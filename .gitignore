@@ -1,0 +1,13 @@
+/.tools/
+/work/
+/outputs/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.rbxl.lock
+*.rbxlx.lock
+*.autosave
+.DS_Store
+Thumbs.db

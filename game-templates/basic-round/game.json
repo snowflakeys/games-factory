@@ -1,0 +1,18 @@
+{
+    "schema_version": 1,
+    "id": "{{GAME_ID}}",
+    "name": "{{GAME_NAME}}",
+    "idea_id": "{{IDEA_ID}}",
+    "stage": "SPEC-PENDING",
+    "completion": null,
+    "approvals": {
+        "spec": null,
+        "playtest": null,
+        "publish": null
+    },
+    "places": {
+        "test": null,
+        "live": null
+    },
+    "dead_reason": null
+}

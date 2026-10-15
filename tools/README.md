@@ -1,0 +1,39 @@
+# Repository toolchain
+
+Install Python 3.11 or newer, then run from the repository root:
+
+```text
+python scripts/bootstrap.py
+python scripts/check.py
+```
+
+The bootstrap uses only Python's standard library. It supports Windows x86_64 and Linux x86_64; CI uses both. It downloads official pinned releases of Rojo, Selene, StyLua, and Lune. No package manager, global installation, or global PATH change is required. Roblox Studio and its Rojo plugin remain separate desktop installations.
+
+Executables are installed under `.tools/bin/` (`.exe` on Windows). Downloads are cached under `work/tool-downloads/`. Both directories are ignored by Git. `scripts/check.py` runs the local executables. Direct invocation also works, for example `./.tools/bin/rojo --version` on Linux or `.\.tools\bin\rojo.exe --version` in PowerShell.
+
+`python scripts/bootstrap.py --help` lists options. Pass tool names to install a subset, for example `python scripts/bootstrap.py rojo lune`. `--force` reinstalls selected tools, reusing an archive only after its digest passes verification.
+
+## Lock file and integrity
+
+`toolchain.lock.json` is the source of truth. Schema version 1 contains:
+
+- `schema_version`: supported format version, currently `1`.
+- `verified_at`: UTC date the official release metadata was checked.
+- `digest_source`: where the archive digests came from.
+- `tools`: mapping keyed by `rojo`, `selene`, `stylua`, or `lune`. Each entry has `version`, `repository` (`owner/repo`), `release_url`, and `assets`.
+- `assets`: entries for `windows-x86_64` and `linux-x86_64`, each with `url` (pinned official GitHub release ZIP), `sha256` (64 lowercase hexadecimal characters), and `binary` (exact root-level executable member).
+
+Archive SHA-256 values come from the GitHub Releases API's `asset.digest` field and are checked before opening the archive. Only the named root-level executable is copied; the bootstrap never extracts arbitrary archive paths. Downloads and installations use temporary files and atomic replacement.
+
+`.tools/installed.json` records each installed tool's binary SHA-256 and a fingerprint of its version, platform, and asset pin. Every bootstrap run hashes existing executables. A changed pin, missing record, missing executable, or hash mismatch triggers installation from a verified archive. Unknown platforms, malformed pins, and missing archive digests fail explicitly.
+
+These checks detect corruption and stale installs; they rely on the committed lock file and local integrity record remaining trustworthy.
+
+## Updating a pin
+
+1. Check the tool's official repository and tagged release. Read release notes for compatibility.
+2. Query `https://api.github.com/repos/OWNER/REPO/releases/tags/TAG` and copy the official Windows and Linux x86_64 `browser_download_url` values and `digest` values. Remove the `sha256:` prefix for the lock file. Do not accept a release asset without a GitHub SHA-256 digest.
+3. Update the tool's version, release URL, both asset records, and `verified_at` together. Releases normally use a `v` tag prefix; the pinned Selene 0.32.0 release uses `0.32.0`.
+4. Run bootstrap and the full checks on both CI platforms. Commit the lock file with the reason for the change. Never commit downloaded tools or archives.
+
+Python callers can import `ensure_tools(repo_root=None, tool_names=None, force=False)` from `scripts/bootstrap.py`; it returns a mapping of tool names to absolute executable `Path` objects. The command-line entry point is `main(argv=None)`.
