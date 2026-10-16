@@ -17,6 +17,8 @@ def run(arguments, cwd=ROOT):
 
 def main():
     try:
+        if not (ROOT / "roblox.yml").is_file():
+            raise ValueError("Missing pinned roblox.yml; restore it or refresh using tools/README.md")
         validate()
         print("PASS: factory files, state, WIP, and recorded human gates", flush=True)
         for folder in (ROOT / "scripts", ROOT / "tests"):

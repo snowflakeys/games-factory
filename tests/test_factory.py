@@ -19,6 +19,18 @@ class FactoryTests(unittest.TestCase):
         shutil.copytree(factory.ROOT, self.root, ignore=shutil.ignore_patterns(
             ".git", ".tools", "work", "outputs", "__pycache__",
         ))
+        # Workflow tests start from a deterministic empty fixture, regardless of
+        # the real factory's queued or active games. Never mutate the real repo.
+        for game_folder in (self.root / "games").glob("game-*"):
+            if game_folder.is_dir():
+                shutil.rmtree(game_folder)
+        state_path = self.root / "factory-state/state.json"
+        state = factory.read_json(state_path)
+        state.update(active_game=None, next_game_number=1, games=[])
+        factory.write_json(state_path, state)
+        factory.write_json(self.root / "factory-state/idea-queue.json", {
+            "schema_version": 1, "ideas": [],
+        })
 
     def new(self, name="Fixture game"):
         idea_id = factory.add_idea(self.root, name, "Test fixture only", "Unit-test fixture; not Snow approval")
