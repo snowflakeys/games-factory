@@ -2,7 +2,7 @@
     "schema_version": 1,
     "owner": "Snow",
     "updated_on": "2026-10-16",
-    "active_game": "game-001",
+    "active_game": null,
     "next_game_number": 2,
     "max_waiting_for_playtest": 2,
     "games": [

@@ -1,6 +1,8 @@
 # Rule Stack v1 completion report
 
-Date: 2026-10-16 (Europe/Istanbul). Environment: cloud/headless Linux. Target: DEV-COMPLETE only; no playtest or release approval implied.
+Date: 2026-10-16 (Europe/Istanbul). Environment: cloud/headless Linux. Status: DEV-COMPLETE; no playtest or release approval implied.
+
+Verified implementation revision: `e9e5f5159c205c94fca721b0ab3e712f6f6f8005`. The subsequent handoff commit changes only metadata and reports; the full check runs again on that final state.
 
 ## Approval and implemented scope
 
@@ -46,6 +48,14 @@ Final icon/thumbnail artwork is absent; assets-needed.md supplies ready-to-paste
 
 ## Handoff
 
-Stop at DEV-COMPLETE after final validation. Snow's next action is local Studio playtesting with the built place and playtest.md matrix, then a real-phone test. Approvals for playtest/publish and test/live place IDs remain null. Do not begin another game in this session.
+Stopped at DEV-COMPLETE after all required local checks passed. Snow's next action is local Studio playtesting with the built place and playtest.md matrix, then a real-phone test. Approvals for playtest/publish and test/live place IDs remain null. Do not begin another game in this session.
 
 No publishing helper, Roblox upload, Luau remote execution, payments, account verification, release or credential actions were performed.
+
+## GitHub handoff
+
+Snow explicitly authorized pushing `build/rule-stack-v1` after being asked whether to upload the code without publishing the Roblox game. The completed game files are on that branch in `snowflakeys/games-factory`; `main` is not merged or changed by this handoff.
+
+The original shell push was first blocked by automatic approval review, then failed because no shell GitHub sign-in was available after authorization. The connected GitHub app uploaded identical Git blobs and an identical source tree instead; no credential files or tokens were read or configured. The source tree SHA is `a89d8477234f89c8b9301b0d645ce87d4a3fef35`, exactly matching the checked local implementation. The completion revision above identifies the corresponding GitHub source commit. The final commit only updates handoff metadata/reports.
+
+Hosted CI is not claimed until observed. The game remains DEV-COMPLETE, with null playtest/publish approvals and no Roblox uploads or releases. Original local commits remain preserved in the downloadable bundle and a local archive branch.

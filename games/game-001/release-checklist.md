@@ -4,7 +4,7 @@ Current target is DEV-COMPLETE only. PLAYTESTED and publishing approval remain p
 
 - [x] Snow approved spec.md at 4aee649 and the no-monetization exception; exact evidence in game.json.
 - [x] Pure logic, server authority, local source and owner test instructions implemented.
-- [ ] Final verification and completion revision: see completion-report.md and game.json.
+- [x] All local checks pass; verified implementation revision: `e9e5f5159c205c94fca721b0ab3e712f6f6f8005`. See completion-report.md and game.json.
 - [ ] Snow's actual Studio/device tests, ten-run fun review and first-minute usability review.
 - [ ] Record every owner correction as a linked, honestly tagged knowledge entry.
 - [ ] Final art, source rights, listing name/description and candidate approval reviewed by Snow.

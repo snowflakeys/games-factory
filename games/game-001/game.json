@@ -3,8 +3,19 @@
     "id": "game-001",
     "name": "Rule Stack",
     "idea_id": "idea-001",
-    "stage": "BUILDING",
-    "completion": null,
+    "stage": "DEV-COMPLETE",
+    "completion": {
+        "at": "2026-10-16",
+        "revision": "e9e5f5159c205c94fca721b0ab3e712f6f6f8005",
+        "evidence": "python scripts/check.py PASS in cloud/headless Linux: 32 Python tests; StyLua PASS; Selene 0 errors/warnings/parse errors; template 51 assertions; Rule Stack 95,507 assertions including 1,000 seed/witness replays, 200 alternative paths, bounded fallback and remote/session validation; 2 local Rojo builds. See games/game-001/completion-report.md. Studio/device/fun and hosted CI are not claimed.",
+        "core_loop": "Full approved solo loop: preview/commit or drag token, server-confirmed rules and strikes, staged compatible rules at 4/8/12, victory or loss, immediate fresh-run restart. No monetization in approved v1.",
+        "checks": {
+            "formatter": "PASS",
+            "lint": "PASS",
+            "logic": "PASS",
+            "build": "PASS"
+        }
+    },
     "approvals": {
         "spec": {
             "by": "Snow",
