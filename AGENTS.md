@@ -46,3 +46,7 @@ You can't draw them. Write games/game-NNN/assets-needed.md with ready-to-paste C
 
 ## Marketing (free only, no ad spend)
 Design clippable moments into the game. Write marketing.md: 5-10 clip ideas, hook lines and captions. Snow uploads manually. No bot accounts or mass duplicate posting.
+
+
+## Imported research and operational references
+Read `knowledge-base/microgames/README.md` for the imported idea catalog and draft specs. Operational references are in `agent-instructions/session-protocol.md`, `ship-checklist.md`, and `roblox-pipeline.md` (paths relative to that folder). These references are subordinate to this file. `agent-instructions/proposed-policy.md` contains an unadopted policy proposal; `factory-state/planning-reference.md` contains unconfirmed planning history. The existing registry and queue remain authoritative.

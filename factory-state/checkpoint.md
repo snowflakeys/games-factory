@@ -12,3 +12,10 @@
 - Next action: take Snow's first queued idea, generate its spec draft, and obtain Snow's approval before implementation.
 - Unknown inputs: first game idea, Snow's art preferences, test/live place IDs, monetization IDs and ad eligibility.
 - Human decisions recorded: repository setup and upload to the named GitHub repository requested; no game specs or publishes approved.
+
+
+## 2026-10-16 document integration
+- Imported all 19 files from Snow’s corrected ZIP into the existing folder layout; adjusted explicit repository paths.
+- Retained canonical root policy and machine-readable game registry/queue; conflicting policy and unconfirmed planning state are labeled references.
+- No game implementation, spec approval, account action, or Roblox publish performed.
+- Next: Snow selects an idea; use the research as input to the existing spec-approval workflow.
