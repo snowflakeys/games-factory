@@ -1,25 +1,7 @@
 --!strict
 -- Dependency injection keeps this module runnable in both Lune and Roblox.
-return function(Rules)
+return function(Rules, SeededRandom)
     local Generator = { version = 1, fallbackSeed = 104729, maxAttempts = 8, tokenAttempts = 24 }
-
-    -- Park-Miller arithmetic is exact inside double's integer precision on both runtimes.
-    local function randomSource(seed)
-        local state = math.floor(seed) % 2147483646 + 1
-        return function(maximum)
-            state = (state * 16807) % 2147483647
-            return state % maximum + 1
-        end
-    end
-
-    local function shuffled(values, random)
-        local copy = table.clone(values)
-        for index = #copy, 2, -1 do
-            local other = random(index)
-            copy[index], copy[other] = copy[other], copy[index]
-        end
-        return copy
-    end
 
     -- Until a rule arrives, omit its triggering attribute. Thus ANY earlier player
     -- choices, not only the witness, remain compatible when the rule is activated.
@@ -71,7 +53,7 @@ return function(Rules)
     end
 
     local function attempt(seed, random)
-        local order = shuffled(Rules.ids, random)
+        local order = SeededRandom.shuffled(Rules.ids, random)
         while #order > 4 do
             table.remove(order)
         end
@@ -83,7 +65,7 @@ return function(Rules)
             seed = seed,
             version = Generator.version,
             order = order,
-            witness = shuffled(cells, random),
+            witness = SeededRandom.shuffled(cells, random),
             tokens = {},
         }
         local board = Rules.emptyBoard()
@@ -140,7 +122,7 @@ return function(Rules)
             "Finite seed required"
         )
         local limit = math.clamp(attemptLimit or Generator.maxAttempts, 0, Generator.maxAttempts)
-        local random = randomSource(seed)
+        local random = SeededRandom.new(seed)
         for attemptNumber = 1, limit do
             local puzzle = attempt(seed, random)
             if puzzle then

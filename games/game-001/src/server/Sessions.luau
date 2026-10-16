@@ -1,5 +1,5 @@
 --!strict
-return function(Run, Generator)
+return function(Run, Generator, TokenBucket)
     local Sessions = {}
     Sessions.__index = Sessions
 
@@ -41,8 +41,7 @@ return function(Run, Generator)
         if not self.players[playerId] then
             self.players[playerId] = {
                 run = Run.new(self.newId(), Generator.generate(self.nextSeed())),
-                budget = 8,
-                updated = now,
+                limiter = TokenBucket.new(8, 4, now),
             }
         end
         return Run.snapshot(self.players[playerId].run)
@@ -57,13 +56,10 @@ return function(Run, Generator)
         if not entry then
             return nil
         end
-        entry.budget = math.min(8, entry.budget + math.max(0, now - entry.updated) * 4)
-        entry.updated = math.max(now, entry.updated)
-        if entry.budget < 1 then
-            -- Drop excess traffic. Client timeout does a read-only sync, never repeats placement.
+        if not entry.limiter:take(now) then
+            -- Drop excess traffic; timeout recovery only syncs, never repeats placement.
             return nil
         end
-        entry.budget -= 1
         local code, errors = "malformed", {}
         if validIntent(intent) then
             if intent.action == "sync" then

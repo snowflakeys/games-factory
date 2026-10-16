@@ -1,9 +1,11 @@
 --!strict
 local Rules = require("../src/shared/Rules")
 local Layout = require("../src/shared/Layout")
-local Generator = require("../src/server/Generator")(Rules)
+local SeededRandom = require("../src/server/Systems/SeededRandom")
+local TokenBucket = require("../src/server/Systems/TokenBucket")
+local Generator = require("../src/server/Generator")(Rules, SeededRandom)
 local Run = require("../src/server/Run")(Rules)
-local Sessions = require("../src/server/Sessions")(Run, Generator)
+local Sessions = require("../src/server/Sessions")(Run, Generator, TokenBucket)
 local checks = 0
 local function expect(condition, message)
     assert(condition, message)
@@ -26,6 +28,13 @@ local function fingerprint(puzzle)
         table.insert(parts, item.color .. item.shape .. item.number .. ":" .. puzzle.witness[turn])
     end
     return table.concat(parts, "|")
+end
+-- Golden outputs captured from the pre-extraction implementation, independent of shared code.
+for _, fixture in require("./generator-v1-fixtures") do
+    expect(
+        fingerprint(Generator.generate(fixture.seed)) == fixture.fingerprint,
+        "Original seeded puzzle preserved"
+    )
 end
 local function unchanged(run, before, message)
     local after = Run.snapshot(run)

@@ -1,6 +1,6 @@
 # Don't Match Me tests
 
-From this folder: `../../.tools/bin/lune run tests/run.luau`. From repository root: `python scripts/check.py` runs repository/Python tests, formatter, pinned Roblox-standard Selene lint, all game/template Lune suites and local Rojo builds. CI runs the same command on Linux and Windows.
+From this folder: `../../.tools/bin/lune run tests/run.luau`. From repository root: `python scripts/check.py` runs repository/Python tests, formatter, pinned Roblox-standard Selene lint, all shared-system/game/template Lune suites and local Rojo builds. CI runs the same command on Linux and Windows.
 
 Tests import the production pure modules directly through dependency injection; no alternate gameplay implementation is substituted. The suite covers:
 
@@ -14,3 +14,5 @@ Tests import the production pure modules directly through dependency injection; 
 - 64-transition server-hitch work bound and logical 64px choice-target geometry at phone/tablet/desktop sizes.
 
 Not verified: actual Roblox services, RemoteEvents, ScreenGui layout/font rendering, touch input, rotation/notches, network feel, mobile performance, first action within 20 seconds or ten enjoyable rounds. Use ../playtest.md for the separate owner matrix. No credentials or remote execution are involved in these local tests.
+
+Shared-system extraction: tests load the game-local pinned copies; the factory check verifies their hashes and exact source bytes. Original seeded outputs are retained as committed golden fixtures (7 puzzles in Rule Stack, 600 bot choices in Don't Match Me). Package contract tests run independently from their immutable version directories. See [extraction report](../../../shared-systems/extraction-report.md).

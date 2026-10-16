@@ -2,7 +2,7 @@
 
 Date: 2026-10-16 (Europe/Istanbul). Environment: cloud/headless Linux. Status: DEV-COMPLETE; no playtest or release approval implied.
 
-Verified implementation revision: `e9e5f5159c205c94fca721b0ab3e712f6f6f8005`. The subsequent handoff commit changes only metadata and reports; the full check runs again on that final state.
+Original v1 implementation revision: `e9e5f5159c205c94fca721b0ab3e712f6f6f8005`. That original handoff changed only metadata/reports; the explicit system extraction below is a later verified maintenance change.
 
 ## Approval and implemented scope
 
@@ -59,3 +59,11 @@ Snow explicitly authorized pushing `build/rule-stack-v1` after being asked wheth
 The original shell push was first blocked by automatic approval review, then failed because no shell GitHub sign-in was available after authorization. The connected GitHub app uploaded identical Git blobs and an identical source tree instead; no credential files or tokens were read or configured. The source tree SHA is `a89d8477234f89c8b9301b0d645ce87d4a3fef35`, exactly matching the checked local implementation. The completion revision above identifies the corresponding GitHub source commit. The final commit only updates handoff metadata/reports.
 
 Hosted CI is not claimed until observed. The game remains DEV-COMPLETE, with null playtest/publish approvals and no Roblox uploads or releases. Original local commits remain preserved in the downloadable bundle and a local archive branch.
+
+## Versioned system extraction, 2026-10-16
+
+Snow requested "extract the systems". This game now loads the explicit local copies in shared-systems.lock.json. SeededRandom 1.0.0 and TokenBucket 1.0.0 are integrated without changing the approved v1 rules or spec. See [shared extraction report](../../shared-systems/extraction-report.md) and [reuse instructions](../../shared-systems/README.md).
+
+Latest source revision: recorded in game.json after final regression. `python scripts/check.py` PASS: 45 Python tests; formatter/lint; 3,119 shared-package assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769; all 3 local Rojo builds. Pre-extraction comparison matched 1,000 full puzzles and 6,000 bot picks; committed golden fixtures protect the original seeded traces. Pin/hash/copy/dependency validation is enforced by the factory gate and CI command. GitHub branch: `refactor/extract-shared-systems`.
+
+Both games remain DEV-COMPLETE; approval records/spec bytes are retained and owner playtest/publish gates remain null. Studio/device/fun and hosted CI are not claimed. No Roblox upload, main merge or credentials.

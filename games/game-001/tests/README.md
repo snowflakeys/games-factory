@@ -1,6 +1,6 @@
 # Rule Stack test boundary
 
-From this game directory run `../../.tools/bin/lune run tests/run.luau`. From repository root run `python scripts/check.py` for factory/Python tests, formatter, pinned-std Selene lint, both Lune suites and both local Rojo builds. CI invokes that same command.
+From this game directory run `../../.tools/bin/lune run tests/run.luau`. From repository root run `python scripts/check.py` for factory/Python tests, formatter, pinned-std Selene lint, all shared-system/game/template Lune suites and all three local Rojo builds. CI invokes that same command.
 
 The tests use the production engine-free modules directly, through dependency injection. Coverage includes:
 
@@ -13,3 +13,5 @@ The tests use the production engine-free modules directly, through dependency in
 - Logical layout widths and >=48px cell geometry for phone, tablet and desktop safe rectangles.
 
 These are not Roblox engine tests. No services, actual RemoteEvents, rendering, real InputObjects, emulator/device, physics, remote execution or gameplay feel are exercised. Follow ../playtest.md separately. No credentials are needed by the automated suite.
+
+Shared-system extraction: tests load the game-local pinned copies; the factory check verifies their hashes and exact source bytes. Original seeded outputs are retained as committed golden fixtures (7 puzzles in Rule Stack, 600 bot choices in Don't Match Me). Package contract tests run independently from their immutable version directories. See [extraction report](../../../shared-systems/extraction-report.md).

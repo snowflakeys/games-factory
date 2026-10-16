@@ -1,14 +1,32 @@
 --!strict
 local Rules = require("../src/shared/Rules")
-local Bot = require("../src/server/Bot")
+local SeededRandom = require("../src/server/Systems/SeededRandom")
+local TokenBucket = require("../src/server/Systems/TokenBucket")
+local PrivateRequests = require("../src/shared/Systems/PrivateRequests")
+local PublicHistoryBot = require("../src/server/Systems/PublicHistoryBot")(SeededRandom)
+local Bot = require("../src/server/Bot")(PublicHistoryBot)
 local Match = require("../src/server/Match")(Rules, Bot)
-local Protocol = require("../src/server/Protocol")
-local Controller = require("../src/shared/Controller")
+local Protocol = require("../src/server/Protocol")(TokenBucket, PrivateRequests)
+local Controller = require("../src/shared/Controller")(PrivateRequests)
 local Layout = require("../src/shared/Layout")
 local checks = 0
 local function expect(value, message)
     assert(value, message)
     checks += 1
+end
+-- Golden bot outputs captured from the pre-extraction implementation.
+for _, fixture in require("./bot-v1-fixtures") do
+    local legal = {}
+    for id = 1, fixture.size do
+        table.insert(legal, id)
+    end
+    local history = { { counts = { [1] = 3, [2] = 1, [3] = 0, [4] = 2, [5] = 1, [6] = 0 } } }
+    for seed, expected in fixture.picks do
+        expect(
+            Bot.choose(seed, legal, fixture.modifier, history) == expected,
+            "Original seeded bot preserved"
+        )
+    end
 end
 local function newMatch(players, seed, customBot)
     local serial = 0

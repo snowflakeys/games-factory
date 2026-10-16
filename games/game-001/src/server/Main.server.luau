@@ -3,9 +3,11 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 local Rules = require(ReplicatedStorage.Shared.Rules)
-local Generator = require(script.Parent.Generator)(Rules)
+local SeededRandom = require(script.Parent.Systems.SeededRandom)
+local TokenBucket = require(script.Parent.Systems.TokenBucket)
+local Generator = require(script.Parent.Generator)(Rules, SeededRandom)
 local Run = require(script.Parent.Run)(Rules)
-local Sessions = require(script.Parent.Sessions)(Run, Generator)
+local Sessions = require(script.Parent.Sessions)(Run, Generator, TokenBucket)
 -- UI-only: no map or avatar is needed; manual respawns retain the same session.
 Players.CharacterAutoLoads = false
 local random = Random.new()

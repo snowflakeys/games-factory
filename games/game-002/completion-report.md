@@ -2,7 +2,7 @@
 
 Date: 2026-10-16, Europe/Istanbul. Environment: cloud/headless Linux. Status: DEV-COMPLETE. All required local checks PASS; owner playtest/release approval remain separate.
 
-Verified implementation revision: `25905218c090d7794c5f0e0e15b6112d1d2e59b0`; source tree `3d0b7590f3dc8910588bd59a9216b05124efe149`, identical to the checked local implementation. Final metadata/report state is checked again before handoff.
+Original v1 implementation revision: `25905218c090d7794c5f0e0e15b6112d1d2e59b0`; source tree `3d0b7590f3dc8910588bd59a9216b05124efe149`, identical to the checked local implementation. That initial handoff is preserved as historical evidence; the later system extraction below has its own full regression check.
 
 ## Approval and delivered scope
 
@@ -22,7 +22,7 @@ Native warm-paper/coral/teal UI uses CoreUISafeInsets, >=64px symbol targets, >=
 - `src/server/Bot.luau`, `Match.luau`, `Protocol.luau`: pure public-history bot policy, match/roster/phase transitions, private snapshot filtering, validation and rate limits. Dependencies injected for the same production code in Lune and Roblox.
 - `src/server/Main.server.luau`: thin Player/service clock/RemoteEvent/heartbeat lifecycle wiring. Server callbacks never broadcast one person's private snapshot to everyone. Extra remote tuple arguments are rejected through the same invalid-packet limiter path.
 - `src/client/Main.client.luau`, `View.luau`: native UI/input/clock transport; score and outcome always come from the server.
-- Replaced only game-002's copied RoundState/MobileHud scaffold. The original template and game-001 are unchanged. No external shared systems; empty dependency lock remains accurate.
+- Replaced only game-002's copied RoundState/MobileHud scaffold. The original template and game-001 are unchanged. At initial v1 delivery the dependency lock was empty; the later versioned extraction below supersedes that choice.
 - Updated test/client docs, decisions, backlog, owner matrix, release checklist, asset prompts, marketing and the narrowly verified source-game lesson `knowledge-base/dont-match-me-private-acks.md`.
 
 ## Required verification
@@ -55,3 +55,11 @@ Icon/thumbnail/effect prompts are ready in assets-needed.md; final art does not 
 Completion metadata pins the checked implementation revision. GitHub branch: `build/dont-match-me-v1`, based on approved spec commit 9749d9f. No main merge or Roblox upload/release. The final handoff commit changes only metadata/reports after source verification.
 
 Stop before game-003: game-001 and game-002 are now the two awaiting-playtest slots. AGENTS.md says, "WIP cap: at most 2 games waiting for Snow's playtest. Don't start more until he clears one." No playtest/publish approvals or place IDs have been fabricated. No credentials, remote execution, payments, questionnaires or account actions performed.
+
+## Versioned system extraction, 2026-10-16
+
+Snow requested "extract the systems". This game now loads the explicit local copies in shared-systems.lock.json. SeededRandom, TokenBucket, PrivateRequests and PublicHistoryBot 1.0.0 are integrated without changing the approved v1 rules or spec. See [shared extraction report](../../shared-systems/extraction-report.md) and [reuse instructions](../../shared-systems/README.md).
+
+Latest source revision: recorded in game.json after final regression. `python scripts/check.py` PASS: 45 Python tests; formatter/lint; 3,119 shared-package assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769; all 3 local Rojo builds. Pre-extraction comparison matched 1,000 full puzzles and 6,000 bot picks; committed golden fixtures protect the original seeded traces. Pin/hash/copy/dependency validation is enforced by the factory gate and CI command. GitHub branch: `refactor/extract-shared-systems`.
+
+Both games remain DEV-COMPLETE; approval records/spec bytes are retained and owner playtest/publish gates remain null. Studio/device/fun and hosted CI are not claimed. No Roblox upload, main merge or credentials.
