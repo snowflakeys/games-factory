@@ -1,6 +1,8 @@
 # Don't Match Me v1 completion report
 
-Date: 2026-10-16, Europe/Istanbul. Environment: cloud/headless Linux. Implementation complete; all required local checks PASS. Target is DEV-COMPLETE, separate from owner playtest/release approval.
+Date: 2026-10-16, Europe/Istanbul. Environment: cloud/headless Linux. Status: DEV-COMPLETE. All required local checks PASS; owner playtest/release approval remain separate.
+
+Verified implementation revision: `25905218c090d7794c5f0e0e15b6112d1d2e59b0`; source tree `3d0b7590f3dc8910588bd59a9216b05124efe149`, identical to the checked local implementation. Final metadata/report state is checked again before handoff.
 
 ## Approval and delivered scope
 

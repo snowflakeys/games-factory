@@ -3,8 +3,19 @@
     "id": "game-002",
     "name": "Don't Match Me",
     "idea_id": "idea-002",
-    "stage": "BUILDING",
-    "completion": null,
+    "stage": "DEV-COMPLETE",
+    "completion": {
+        "at": "2026-10-16",
+        "revision": "25905218c090d7794c5f0e0e15b6112d1d2e59b0",
+        "evidence": "python scripts/check.py PASS in cloud/headless Linux: 32 Python tests; StyLua; Selene 0 errors/warnings/parse errors; template 51 assertions; unchanged game-001 95,507 assertions; game-002 444,169 assertions, 10,080 seeded rounds plus 480 replay rounds and 1,875 exhaustive scoring configurations; 3 local Rojo builds. See games/game-002/completion-report.md. GitHub source tree matches the checked local source. Studio/device/fun and hosted CI remain unverified.",
+        "core_loop": "Full approved v1: 1-16 humans with bots filling four seats, secret choices and fixed server reveal, UNIQUE/PAIRS/MINORITY scoring through eight rounds, authoritative totals/shared winners, joins/reconnects and fast/automatic rematch. Native touch UI, pure rules/bots/match/protocol/controller tests, no monetization.",
+        "checks": {
+            "formatter": "PASS",
+            "lint": "PASS",
+            "logic": "PASS",
+            "build": "PASS"
+        }
+    },
     "approvals": {
         "spec": {
             "by": "Snow",

@@ -4,7 +4,7 @@ Current target: DEV-COMPLETE only. No test/live place IDs or publishing approval
 
 - [x] Snow approved spec.md at 9749d9f, including the game-specific no-monetization v1 exception. Exact evidence in game.json.
 - [x] Full approved core, pure modules/tests, thin adapters, native mobile-oriented UI and owner matrix implemented.
-- [ ] Final check outcome and verified implementation revision: completion-report.md and game.json.
+- [x] All local checks pass; verified implementation `25905218c090d7794c5f0e0e15b6112d1d2e59b0`. See completion-report.md and game.json.
 - [ ] Snow's actual Studio/multi-client/emulator/phone tests and corrections.
 - [ ] First meaningful pick within about 20 seconds unaided, ten-round and repeat-match fun review.
 - [ ] Final icon/thumbnail/source rights and listing description approved by Snow.
