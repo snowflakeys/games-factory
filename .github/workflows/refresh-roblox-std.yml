@@ -2,8 +2,6 @@ name: Refresh Roblox lint standard
 
 on:
   workflow_dispatch:
-  push:
-    branches: [fix/factory-readiness]
 
 permissions:
   contents: read

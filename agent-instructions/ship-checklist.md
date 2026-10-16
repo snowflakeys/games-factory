@@ -17,7 +17,7 @@ Per game, in order. Platform facts and sources are in `knowledge-base/roblox-pla
 - [ ] Age check done (facial age estimation or ID).
 - [ ] If all-ages: verification (facial age estimation under 18, government ID 18+) and 2-step verification.
 - [ ] For ads later: 13+, 2FA, **ID verified**.
-- [ ] Create an Open Cloud API key (place publishing). Keep it out of git; keep it only in the owner’s manual publishing environment as `ROBLOX_API_KEY`, never in agents or CI. Create a second key scoped to Luau Execution for the **test place**.
+- [ ] Create an Open Cloud API key (place publishing). Keep it out of git; keep it only in the owner’s manual publishing environment as `ROBLOX_API_KEY`, never in agents or CI. Create a second key scoped to Luau Execution for the **test place** only if needed; this key also stays owner-only, never in agents or CI. Snow runs remote tests.
 
 ## Phase 1: before the first publish (agent + owner)
 

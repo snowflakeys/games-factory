@@ -1,0 +1,18 @@
+{
+    "schema_version": 1,
+    "id": "game-001",
+    "name": "Rule Stack",
+    "idea_id": "idea-001",
+    "stage": "SPEC-PENDING",
+    "completion": null,
+    "approvals": {
+        "spec": null,
+        "playtest": null,
+        "publish": null
+    },
+    "places": {
+        "test": null,
+        "live": null
+    },
+    "dead_reason": null
+}

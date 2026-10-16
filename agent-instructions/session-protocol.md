@@ -18,7 +18,7 @@ Cloud agents can edit, run pure logic, and build local Rojo artifacts. Studio in
 
 ## Owner-only actions
 
-All Roblox uploads, including Saved versions, and all releases are owner-only. Agents never execute `scripts/publish-place.sh`. Publishing keys must not be available to agents or CI. Agents also do not answer questionnaires, pay fees, or verify accounts. Prepare local artifacts and exact owner steps instead.
+All Roblox uploads, including Saved versions, and all releases are owner-only. Agents never execute `scripts/publish-place.sh`. Publishing and Luau Execution keys must not be available to agents or CI. Snow runs any remote execution tests against the test place. Agents also do not answer questionnaires, pay fees, or verify accounts. Prepare local artifacts and exact owner steps instead.
 
 ## Handoff
 

@@ -1,2 +1,5 @@
 std = "roblox"
 exclude = [".tools/**", "work/**", "outputs/**"]
+
+# Use committed roblox.yml; never refresh implicitly during checks.
+roblox-std-source = "pinned"

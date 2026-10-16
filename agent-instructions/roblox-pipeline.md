@@ -61,7 +61,7 @@ OWNER_PUBLISH_CONFIRM=I_AM_THE_OWNER VERSION_TYPE=Published scripts/publish-plac
 ## Tests, in three tiers
 
 1. **Pure-logic tests (no Roblox engine):** rules, generators, resolvers, bots, seed replay. Runnable by any cloud agent. Prefer a standalone Luau runtime (for example Lune) or Jest-style tests; Lune is already selected by this repository.
-2. **Engine tests via Luau Execution (headless, Roblox servers):** create a task, poll it, read results and logs. Physics doesn't run and scripts don't auto-run, so this tests required modules, not gameplay. Rate limit: 5 task creations per minute; at most 10 incomplete tasks per place; results kept 24 hours. **Run against the test place only.**
+2. **Owner-run engine tests via Luau Execution (headless, Roblox servers):** agents prepare test code only and never receive the key or invoke remote tasks. Snow can create a task, poll it, read results and logs. Physics doesn't run and scripts don't auto-run, so this tests required modules, not gameplay. Rate limit: 5 task creations per minute; at most 10 incomplete tasks per place; results kept 24 hours. **Run against the test place only.**
 3. **Studio and device tests:** desktop session with Studio MCP (`start_stop_play`, `get_console_output`, `screen_capture`, simulated input) plus the owner's real phone.
 
 ## Studio MCP (desktop sessions only)

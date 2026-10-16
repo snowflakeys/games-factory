@@ -1,4 +1,12 @@
 {
     "schema_version": 1,
-    "ideas": []
+    "ideas": [
+        {
+            "id": "idea-001",
+            "name": "Rule Stack",
+            "idea": "Solo-friendly UI puzzle using the Rule Stack research spec; prepare a v1 draft for owner approval.",
+            "source": "Snow, 2026-10-16, this Game Factory readiness conversation: selected Rule Stack (Recommended) when asked which researched idea to queue for a supervised dry run stopping at SPEC-PENDING.",
+            "game_id": "game-001"
+        }
+    ]
 }

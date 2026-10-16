@@ -21,7 +21,7 @@ Read `factory-state/state.json` (registry and active game), `idea-queue.json` (o
 WIP cap: at most 2 games waiting for Snow's playtest. Don't start more until he clears one.
 
 ## Non-negotiable rules
-- Mobile-first UI and controls. Most players are on phones.
+- Mobile-first UI and controls. Most players are on phones. Use `game-templates/basic-round/src/client/MobileHud.luau` as an opt-in safe-area/button reference, then verify the actual game in Studio and on a phone.
 - Server authority: never trust the client for hits, scores, rewards or round state.
 - Put deterministic game rules, scoring, round transitions, generators, and reward calculations in pure Luau modules with meaningful Lune tests. Keep Roblox services, remotes, input, rendering, and persistence adapters thin. Engine-dependent behavior still needs Studio verification; local builds and logic tests do not establish mobile usability or fun.
 - Never commit credentials, tokens, cookies, or API keys. Keep secrets out of logs and use environment variables only where needed. Publishing credentials must never be provisioned to agent environments or CI.
@@ -34,7 +34,7 @@ WIP cap: at most 2 games waiting for Snow's playtest. Don't start more until he 
 DEV-COMPLETE → PLAYTESTED (Snow) → RELEASE-READY (Snow approves publish) → LIVE → WINNER or DEAD
 
 ## Human gates
-Snow approves the spec, playtests daily, and performs every Roblox upload and release. Agents never run `scripts/publish-place.sh`, upload Saved or Published versions, answer maturity questionnaires, make payments, verify accounts, or press Release. Agents prepare local builds, release notes, and exact owner steps. Keep `ROBLOX_API_KEY` out of all agent and CI environments. The publishing helper is owner-only and untested against Roblox; its acknowledgement flag is a guard against accidents, not an access-control boundary.
+Snow approves the spec, playtests daily, and performs every Roblox upload and release. Agents never run `scripts/publish-place.sh`, upload Saved or Published versions, answer maturity questionnaires, make payments, verify accounts, or press Release. Agents prepare local builds, release notes, and exact owner steps. Keep `ROBLOX_API_KEY` out of all agent and CI environments. Luau Execution credentials are also owner-only: agents and CI must not hold them or invoke remote execution; prepare tests for Snow to run against the separate test place. The publishing helper is owner-only and untested against Roblox; its acknowledgement flag is a guard against accidents, not an access-control boundary.
 
 ## Judging games
 Use day-1 retention and average session length from Creator Dashboard, not player count alone. Log every dead game as NOT FUN or NOT DISCOVERED. Dead games get no more effort.
