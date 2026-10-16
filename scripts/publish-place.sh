@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
+# OWNER-ONLY: agents and CI must never run this script.
 # Build a Rojo project and upload it as a place version via Roblox Open Cloud.
 # Usage: VERSION_TYPE=Saved scripts/publish-place.sh games/game-NNN
 # Env:   ROBLOX_API_KEY, UNIVERSE_ID, PLACE_ID  (never commit these)
 # Default VERSION_TYPE is Saved (stored, NOT live). Use Published only on owner instruction.
 # Untested against the live API: first run with Saved and check the version in Studio.
 set -euo pipefail
+
+# Accidental-use guard only. Keep publishing credentials out of agent environments.
+if [[ "${OWNER_PUBLISH_CONFIRM:-}" != "I_AM_THE_OWNER" ]]; then
+  echo "Owner-only publishing. Run manually with OWNER_PUBLISH_CONFIRM=I_AM_THE_OWNER; agents must not publish." >&2
+  exit 2
+fi
 
 PROJECT_DIR="${1:?usage: publish-place.sh <project-dir>}"
 : "${ROBLOX_API_KEY:?set ROBLOX_API_KEY}"
@@ -29,4 +36,4 @@ curl --fail-with-body --silent --show-error -X POST \
   -H "Content-Type: application/octet-stream" \
   --data-binary @"$OUT"
 echo
-echo "Done. A JSON body like {\"versionNumber\":N} means success; record N in factory-state/planning-reference.md."
+echo "Done. A JSON body like {\"versionNumber\":N} means success; record N in the game release checklist with the tested revision."

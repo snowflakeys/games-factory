@@ -34,7 +34,7 @@ DEV-COMPLETE is an agent development milestone. It does not establish playtest s
 
 - Record Snow's explicit publish approval for the specific release before marking RELEASE-READY.
 - Record the target place and tested revision. Winner updates are developed in a separate test place.
-- Publish only within Snow's explicit authorization. Record the resulting version/place evidence before marking LIVE.
+- Snow performs all uploads and releases, including Saved versions. Agents prepare local artifacts and owner steps only; record Snow’s resulting version/place evidence before marking LIVE.
 
 ## Outcome
 

@@ -19,3 +19,10 @@
 - Retained canonical root policy and machine-readable game registry/queue; conflicting policy and unconfirmed planning state are labeled references.
 - No game implementation, spec approval, account action, or Roblox publish performed.
 - Next: Snow selects an idea; use the research as input to the existing spec-approval workflow.
+
+## 2026-10-16 scheduling-readiness reconciliation
+- Canonical policy now defines frozen v1 scope, state ownership, pure-module/Lune testing, safe 16+ design preference, secrets policy, and owner-only uploads/releases/account actions.
+- CLAUDE.md imports @AGENTS.md. Removed competing instructions from the old proposed-policy file and reconciled session/pipeline/shipping guidance.
+- Publishing helper requires a manual owner acknowledgement; it was not executed against Roblox. Keep all publishing credentials out of agents and CI.
+- Queue remains empty; no game spec or batch approval was invented. Owner must select ideas and approve each exact spec.
+- Restricted-egress lint remains blocked until a genuine generated Roblox standard library is vendored or the environment can fetch it. No hand-written stub substitutes for Roblox API coverage.

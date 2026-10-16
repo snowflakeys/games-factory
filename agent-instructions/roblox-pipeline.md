@@ -6,20 +6,11 @@ Source for platform claims: `knowledge-base/roblox-platform-rules.md`. Verified 
 
 ## Decision: Rojo is the source of truth
 
-The repo (files on disk) is the source of truth, so cloud agents can build and push without Studio. That is Rojo's job. Studio's built-in **Script Sync** only syncs scripts, and it requires Studio open, so use it only as a convenience on the owner's PC. The built-in **Studio MCP server** is for desktop sessions (playtests, screenshots, input simulation).
+The repo (files on disk) is the source of truth, so cloud agents can build locally without Studio. That is Rojo's job. Studio's built-in **Script Sync** only syncs scripts, and it requires Studio open, so use it only as a convenience on the owner's PC. The built-in **Studio MCP server** is for desktop sessions (playtests, screenshots, input simulation).
 
 ## Toolchain
 
-`rokit.toml` at the repo root:
-
-```toml
-[tools]
-rojo = "rojo-rbx/rojo@7.7.1"
-```
-
-Install Rokit (one-liners are on the Rokit README), then `rokit install`. Optional editor tooling Roblox recommends: Luau Language Server (+ its Studio companion plugin), StyLua (formatter), selene (linter).
-
-Install the Studio plugin with `rojo plugin install` for live sync on the owner's PC.
+Use the repository’s `toolchain.lock.json` and `python scripts/bootstrap.py`. Lune, Rojo, StyLua, and Selene are already selected and pinned. Do not introduce a second tool manager. `python scripts/check.py` runs the required checks.
 
 ## Minimal project file
 
@@ -48,16 +39,18 @@ cd games/game-NNN
 rojo build default.project.json -o build/game.rbxl
 ```
 
-## Publish a version (Open Cloud)
+## Publish a version (owner only)
+
+Agents never run these commands or receive publishing credentials. The owner runs them manually outside agent sessions. Both Saved uploads and Published releases are owner-only.
 
 Prerequisites: the first publish was done once in Studio (it creates the IDs); an API key with write access for the place; `ROBLOX_API_KEY`, `UNIVERSE_ID`, `PLACE_ID` in the environment.
 
 ```bash
 # staging: saved, not live
-VERSION_TYPE=Saved scripts/publish-place.sh games/game-NNN
+OWNER_PUBLISH_CONFIRM=I_AM_THE_OWNER VERSION_TYPE=Saved scripts/publish-place.sh games/game-NNN
 
 # live: only when the owner said so
-VERSION_TYPE=Published scripts/publish-place.sh games/game-NNN
+OWNER_PUBLISH_CONFIRM=I_AM_THE_OWNER VERSION_TYPE=Published scripts/publish-place.sh games/game-NNN
 ```
 
 - `Saved` stores the version (visible in Studio) without changing what players get. `Published` makes it live.
@@ -67,7 +60,7 @@ VERSION_TYPE=Published scripts/publish-place.sh games/game-NNN
 
 ## Tests, in three tiers
 
-1. **Pure-logic tests (no Roblox engine):** rules, generators, resolvers, bots, seed replay. Runnable by any cloud agent. Prefer a standalone Luau runtime (for example Lune) or Jest-style tests; which one is **not yet chosen** (pick the first game's, then reuse).
+1. **Pure-logic tests (no Roblox engine):** rules, generators, resolvers, bots, seed replay. Runnable by any cloud agent. Prefer a standalone Luau runtime (for example Lune) or Jest-style tests; Lune is already selected by this repository.
 2. **Engine tests via Luau Execution (headless, Roblox servers):** create a task, poll it, read results and logs. Physics doesn't run and scripts don't auto-run, so this tests required modules, not gameplay. Rate limit: 5 task creations per minute; at most 10 incomplete tasks per place; results kept 24 hours. **Run against the test place only.**
 3. **Studio and device tests:** desktop session with Studio MCP (`start_stop_play`, `get_console_output`, `screen_capture`, simulated input) plus the owner's real phone.
 
@@ -75,6 +68,6 @@ VERSION_TYPE=Published scripts/publish-place.sh games/game-NNN
 
 Enable in Studio: Assistant > ... > Manage MCP Servers > Enable Studio as MCP server; connect Claude Code, Codex CLI, or another client via Quick connect or the JSON/CLI config in the Roblox docs. Check for the green indicator. MCP clients can read and modify open places, so only connect trusted clients and disconnect when idle.
 
-## Config you'll need to record in `status.md` per game
+## Per-game metadata
 
-Universe ID, start Place ID, test Place ID, API key location (not the key), current live version number.
+Record test/live place IDs and approval evidence in `games/game-NNN/game.json` using the existing schema. Record additional Universe/version details in the game release checklist. Never record keys. `factory-state/checkpoint.md` holds the session handoff, not a competing game registry.

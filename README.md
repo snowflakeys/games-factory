@@ -74,7 +74,7 @@ At session end, update the checkpoint and state, run the checks, and commit. Rea
 - [Session protocol reference](agent-instructions/session-protocol.md)
 - [Shipping checklist reference](agent-instructions/ship-checklist.md)
 - [Roblox build/publish pipeline reference](agent-instructions/roblox-pipeline.md)
-- [Unadopted policy proposal](agent-instructions/proposed-policy.md)
+- [Consolidated policy pointer](agent-instructions/proposed-policy.md)
 - [Unconfirmed planning history](factory-state/planning-reference.md)
 
-The publishing helper is imported and untested against Roblox. No upload or release was performed. Existing root policy, approval gates, registry, and queue remain authoritative.
+The publishing helper is owner-only, guarded by an explicit manual acknowledgement, and untested against Roblox. Agents and CI must never receive publishing keys or upload Saved/Published versions. No upload or release was performed. Existing root policy, approval gates, registry, and queue remain authoritative.

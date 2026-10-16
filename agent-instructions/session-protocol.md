@@ -1,94 +1,27 @@
-> Imported reference/proposal from Snow’s 2026-10-16 document pack. Root `AGENTS.md` remains canonical; existing approval gates, full-core-loop completion, CI requirements, and state schema take precedence over conflicting examples here. No policy replacement is approved by this import.
+# Session protocol
 
-# Session Protocol
+Root `AGENTS.md` is canonical. This protocol implements it without a second state model.
 
-How one scheduled or ad-hoc agent session runs. Written so any agent can follow it.
+## Orient
 
-## 1. Know your environment first
+Read `factory-state/state.json`, `idea-queue.json`, and `checkpoint.md`; inspect Git status and recent commits. Read the active game's `game.json`, `spec.md`, decisions, backlog, and relevant knowledge. Historical planning notes do not select an active game.
 
-What you can do depends on where you run. State which one applies in your handoff note.
+If no game is active, scaffold only from Snow's queue using `python scripts/factory.py new-game --idea idea-NNN`. An empty queue is a real blocker. At SPEC-PENDING, draft the spec and hand off for Snow's approval. Never invent an idea, approval, or playtest result. Explicit batch approval must identify each spec and revision and be recorded per game.
 
-| Capability | Cloud / headless session | Desktop session (owner's PC with Studio open) |
-|---|---|---|
-| Edit files, run git | Yes | Yes |
-| `rojo build` to a `.rbxl` | Yes (if Rojo is installed) | Yes |
-| Pure-logic tests (no Roblox engine) | Yes | Yes |
-| Publish a **Saved** version via Open Cloud | Yes, with `ROBLOX_API_KEY` in env | Yes |
-| Make a version **live** (`Published`) | Only when the owner has said so in the task | Same |
-| Headless engine tests via Luau Execution | Yes, against the **test place** only | Yes |
-| Studio MCP (read tree, run playtest, screenshots, input simulation) | **No** (needs Studio running locally) | Yes, after the owner enables it |
-| Real-device feel, humor, fun | **No** | Owner only |
-| First-ever publish (creates the Universe and Place IDs) | **No** | Owner does it in Studio |
+## Build and verify
 
-Rules that follow:
-- A cloud session can write and verify logic, build, and push a Saved version. It cannot judge fun or mobile feel. Flag those as **owner playtest needed**.
-- Never run Luau Execution or tests against the live place.
+Freeze the approved v1 acceptance criteria. Complete the full approved loop before marking DEV-COMPLETE. Work in testable slices and checkpoint if the session ends early; a slice alone is not development completion. New ideas go to v1.1 unless Snow explicitly revises scope.
 
-## 2. Session types
+Keep deterministic rules in pure Luau modules with Lune tests. Keep Roblox adapters thin. Run `python scripts/check.py`; record failures without bypassing them. Treat a failed Roblox standard-library download as a lint blocker, not a passing lint check. Test remote validation, duplicate/late input, disconnects, ties, and replay where applicable.
 
-Pick one type per session. Don't mix.
+Cloud agents can edit, run pure logic, and build local Rojo artifacts. Studio integration, emulator behavior, real-device controls, physics, and fun require separate evidence. Studio automation requires an available local Studio session and must use the test place. Never test against the live place.
 
-| Type | Output | Ends when |
-|---|---|---|
-| **Spec** | `spec.md` with v1 list, v1.1 list, hypotheses, go/no-go | Spec passes the greenlight checklist |
-| **Build** | Working code for part of the v1 list, tests passing | The chosen slice is playable or testable |
-| **Verify** | Test runs, exploit/malformed-input attacks, mobile layout checks | Failures fixed or logged with repro seeds |
-| **Ship prep** | Items on `ship-checklist.md` that agents can do; owner steps written out | Everything agent-doable is done |
-| **Research** | A short note added to `knowledge-base/` with sources and date | Question answered or marked unknown |
-| **Review** | Postmortem or kill/scale recommendation using real numbers | Recommendation written |
+## Owner-only actions
 
-## 3. Procedure
+All Roblox uploads, including Saved versions, and all releases are owner-only. Agents never execute `scripts/publish-place.sh`. Publishing keys must not be available to agents or CI. Agents also do not answer questionnaires, pay fees, or verify accounts. Prepare local artifacts and exact owner steps instead.
 
-1. **Orient:** read `AGENTS.md`, `factory-state/checkpoint.md`, the active spec, the last handoff. Check `git log` for what changed since.
-2. **Choose one task** from the spec's v1 list (or the ship checklist). If the task isn't on the v1 list, stop and log it on the v1.1 list.
-3. **Plan in a few lines** inside the session, not a document. Note assumptions.
-4. **Do the task in small commits.** Prefer deterministic logic modules with tests; keep UI thin.
-5. **Verify**: run tests; for networked games, attack your own remotes with late, duplicate and malformed input.
-6. **Update `factory-state/checkpoint.md`** and write the handoff.
-7. **Stop** when a stop condition hits.
+## Handoff
 
-## 4. Stop conditions
+Update registry and per-game metadata only from actual evidence. Write the checkpoint and game completion report with: date and environment, scope completed, changed files, exact checks and outcomes, unverified engine/device behavior, blockers, parked v1.1 ideas, and the next concrete action. Commit intended changes. Do not claim hosted CI passed until observed.
 
-Stop and hand off when any of these is true:
-- The chosen task is done and verified.
-- You need an owner action (account step, payment, art files, playtest, publishing to live).
-- Platform facts in the docs look stale or contradictory and the task depends on them.
-- You've hit the same failure twice without new information (write down what you tried).
-- Scope would grow beyond the frozen v1 list.
-
-## 5. Owner-only gates (prepare, don't perform)
-
-- Age check / ID verification / 2FA on the Roblox account.
-- Choosing Roblox Plus vs the refundable publishing fee; paying any fee.
-- The first publish in Studio (creates the Universe and Place IDs).
-- The content maturity questionnaire answers (must be truthful and are the owner's responsibility).
-- Generating and approving art.
-- Daily playtest and the "is it fun?" call.
-- Making a version live; moving a game from Saved to Published.
-
-## 6. Handoff note (paste into `factory-state/checkpoint.md` and the game's `completion-report.md`)
-
-```text
-Date / agent / environment (cloud or desktop):
-Game and state:
-Task done:
-Changed (files / systems):
-Verified how (tests, attacks, emulator):
-Not verified (needs owner playtest / device / live):
-Blocked on (owner action):
-New ideas parked on v1.1:
-Surprises / platform facts learned (and where recorded):
-Next task for the next session:
-```
-
-## 7. Daily playtest loop (owner)
-
-Owner plays the latest Saved build daily. Notes go in `games/game-NNN/playtest.md`: what felt bad, what confused, what was fun. The next Build session works from that list, filtered through the frozen v1 scope.
-
-## 8. Anti-patterns
-
-- Growing v1 because a new idea seemed better.
-- Building a shared framework before three games have needed the same code.
-- Declaring "done" without saying what wasn't verified.
-- Treating a headless pass as proof the game is fun or readable on a phone.
-- Re-researching settled platform rules every session; instead, update the rules file when you find a change.
+Stop for missing owner input or approval, a real environmental blocker, or the session limit; leave a resumable checkpoint. Do not begin another game before completing the current approved loop. Respect the two-game playtest waiting cap and WINNER priority.
