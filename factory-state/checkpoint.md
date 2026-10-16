@@ -1,13 +1,14 @@
 # Checkpoint
 
-- Date: 2026-10-16 (Europe/Istanbul); environment: cloud/headless.
-- Task: close scheduling-readiness gaps and run the first supervised scaffold session.
-- Active game: game-001, Rule Stack; selected idea: idea-001.
-- Stage: SPEC-PENDING; waiting for playtest: 0 of 2.
-- Owner evidence: Snow selected Rule Stack in this readiness conversation's first-game choice; source recorded in idea-queue.json. This selects the idea only, not the spec or monetization exception.
-- Changed: pinned generated Roblox lint std and manual refresh workflow; opt-in mobile HUD template and copied scaffold; owner-only Luau Execution key policy; unit-test fixtures isolated from live factory state; game-001 draft spec.
-- Verification: full python scripts/check.py PASS under inherited Linux seccomp rules denying IPv4/IPv6 sockets, with installed tools. 32 Python tests, zero Selene warnings/errors, StyLua pass, 51 round-state assertions per project, two Rojo builds. Details and standard-library provenance in tools/README.md.
-- Not verified: Studio execution, mobile visual layout/input, real-device feel, or gameplay. The HUD is a disabled-by-default reference. Rule Stack is a scaffold only, not DEV-COMPLETE.
-- No Roblox keys used; no remote execution, uploads, or releases performed. All game approval fields remain null.
-- Test fix: factory workflow tests previously copied production state and assumed it was empty; setup now resets only its temporary fixture registry, queue and game directories.
-- Next owner action: review games/game-001/spec.md and explicitly approve its exact version (including proposed no-monetization v1 exception), or request changes. Implementation remains blocked until approval.
+- Date: 2026-10-16, Europe/Istanbul; cloud/headless Linux.
+- Active game: none. Rule Stack (game-001) and Don't Match Me (game-002) remain DEV-COMPLETE. Waiting for Snow's playtest: 2/2; stop before game-003.
+- Latest request: Snow said "extract the systems". Extracted four pure Luau packages, all version 1.0.0: seeded-random, token-bucket, private-requests, public-history-bot. Contracts/manifests/Lune tests are in shared-systems/<name>/1.0.0. This is maintenance of approved v1, no gameplay/spec change or new approval implied.
+- Rule Stack vendors/pins SeededRandom and TokenBucket. Don't Match Me vendors/pins all four. Server-only copies remain server-side; PrivateRequests is shared by client/protocol. No runtime cross-game/shared-directory loader. Existing package directories are immutable; future upgrades require a new version and explicit per-game copy/lock changes.
+- New scripts/shared_systems.py installs explicit copies and verifies package identity/hash, module maps, exact copy bytes, dependencies and safe paths. scripts/check.py runs every shared package's Lune tests; factory.validate enforces pins. Thirteen new Python integrity tests; existing human and WIP gates retained.
+- python scripts/check.py PASS: 45 Python tests; StyLua; Selene 0 errors/warnings/parse errors; shared packages 3,119 assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769 (10,080 simulated rounds plus 480 replay rounds and 1,875 exhaustive scoring configurations); all 3 local Rojo builds. Final metadata state is checked again before handoff.
+- Compatibility: pre-extraction code at local 18eadcd (tree matches GitHub 707ae62258e3b06c18f138d4d9068f66b288441e) compared side by side: 1,000 complete puzzles and 6,000 bot choices identical. Seven puzzle/600 bot-choice golden outputs committed to ongoing tests.
+- Latest verified source revision: 310692363de43e8755131f3a0e62b5706cbe9bff; tree b8f28f0a992e9766022a7103976d8091685bb421 matches the checked local source. Recorded in both game.json completion records. Final metadata/report state checked again before handoff. Original approved spec revisions/evidence/no-monetization exceptions retained; both spec files unchanged. Playtest/publish approvals and place IDs remain null.
+- Handoff branch: refactor/extract-shared-systems. No main merge. See shared-systems/README.md for usage and extraction-report.md for completion evidence. Refreshed local builds: work/builds/game-001.rbxlx and game-002.rbxlx.
+- Unverified: actual Roblox services/remotes/rendering/input, Studio emulator, physical phone, network feel/performance and fun. Hosted CI not claimed until observed.
+- No credentials, Roblox publishing/upload helper, remote execution, payments, questionnaires or account actions performed.
+- Next: Snow playtests either completed game and records findings/PLAYTESTED evidence before another scaffold/build. AGENTS.md: "WIP cap: at most 2 games waiting for Snow's playtest. Don't start more until he clears one."

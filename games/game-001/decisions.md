@@ -1,9 +1,16 @@
-# Rule Stack — decisions
+# Rule Stack decisions
 
-Game: game-001 · Created: 2026-10-16
-
-Record consequential choices, scope changes, and Snow's explicit approvals with evidence. Do not treat this log as approval by itself. Each shared-system entry must name its pinned version and the matching lock-file entry.
-
-| Date | Decision | Reason / alternative | Evidence / approver |
-| --- | --- | --- | --- |
-| PENDING | PENDING | PENDING | PENDING |
+| Date | Decision | Reason and evidence |
+| --- | --- | --- |
+| 2026-10-16 | Freeze `spec.md` at commit `4aee649`; no monetization, XP, purchases or ads in v1. | Snow's explicit build message, quoted in `game.json`, approves this exact revision and exception. The approved spec remains byte-for-byte unchanged, including its historical draft wording. Metadata owns the current stage. |
+| 2026-10-16 | Four distinct staged predicates from the six-rule catalog; activate after 0, 4, 8, 12 accepted placements. | Implements approved scope. Placement attempts and accepted-placement counts are separate, so a strike never advances a rule stage. |
+| 2026-10-16 | Construct a hidden full witness; delay triggering token attributes until their predicate activates. | All previous accepted player choices remain valid when each new rule arrives. A witness alone would only prove compatibility along the hidden solution. Arbitrary player choices can still dead-end. |
+| 2026-10-16 | Generator v1: 8 attempts maximum, 24 token proposals per cell; literal fallback seed 104729. | Bounded work, validated complete solution, deterministic seed replay. Fallback has a fixed sequence, order and path and does not retry random generation. Metadata records the requested and effective seed separately, server-side only. |
+| 2026-10-16 | Inject pure dependencies into Generator, Run and Sessions. | The exact same modules run under Lune and Roblox without services, `script` globals or alternate implementations. Only Rules and Layout replicate; server puzzle data never does. |
+| 2026-10-16 | One intent counter advances on both accepted moves and illegal in-board moves. | Duplicate illegal placements cannot cause a second strike. Malformed, stale, out-of-range and over-rate input never changes the run. Separate snapshot revision protects presentation. |
+| 2026-10-16 | Per-player token bucket: burst 8, refill 4 requests/second; excess dropped before snapshot/generation. | Bound adapter work, including invalid requests. Client locks in flight and recovers using read-only sync after 3 seconds; never automatically replays a placement. |
+| 2026-10-16 | Touch flow: tap token, tap cell to preview, PLACE; optional token drag and release. | Explicit commit with a legality explanation; cancelled/outside drags send no placement intent. 48px minimum board targets, 52px primary actions, CoreUISafeInsets, responsive stacked/side layout, scrollable rules. Engine/device feel remains unverified. |
+| 2026-10-16 | UI-only game creates its ScreenGui programmatically, disables automatic avatar spawning and retains UI on respawn. | No map, movement, avatar or persistence system is needed. Session sync retrieves the existing run; disconnect deletes it. Roblox API references checked: [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts), [BasePlayerGui hit-test example](https://create.roblox.com/docs/reference/engine/classes/BasePlayerGui), [ScreenGui](https://create.roblox.com/docs/reference/engine/classes/ScreenGui). These references do not constitute engine testing. |
+| 2026-10-16 | Native flat navy UI with labeled colored tokens; no external artwork required for development. | Starter art bible favors legibility and color plus labels. Final icon/thumbnail/effect prompts supplied separately; no claim Snow approved final art. |
+| 2026-10-16 | Original v1 used self-contained systems (superseded by extraction below). | Historical decision at initial implementation; see the explicit versioned extraction below. |
+| 2026-10-16 | Snow requested "extract the systems": explicitly vendor SeededRandom 1.0.0 and TokenBucket 1.0.0. | Exact copy paths and package SHA-256 pinned in shared-systems.lock.json; pure dependencies injected in both runtimes. Full regressions and pre-extraction seeded comparisons pass. Gameplay/spec unchanged; see ../../shared-systems/extraction-report.md. |

@@ -46,7 +46,7 @@ The hosted source repository is [snowflakeys/games-factory](https://github.com/s
 | --- | --- |
 | `agent-instructions/` | Session checklist, definition of done, draft art-style bible |
 | `game-templates/basic-round/` | Rojo source, tested round-state helper, and game document templates |
-| `shared-systems/` | Versioned systems; Universal Blocks Engine reservation |
+| `shared-systems/` | Four versioned pure Luau systems; Universal Blocks Engine reservation |
 | `knowledge-base/` | Imported research, platform references, and evidence-tagged lesson template |
 | `factory-state/` | Registry, Snow's idea queue, and current checkpoint |
 | `games/game-NNN/` | Each game's own source, spec, assets, tests, reports, and approvals |
@@ -55,7 +55,7 @@ The hosted source repository is [snowflakeys/games-factory](https://github.com/s
 | `work/` | Ignored temporary downloads, test fixtures, and local builds |
 | `outputs/` | Ignored shareable source snapshot and setup report |
 
-Each game receives its own `game.json`, Rojo project, spec, decisions, backlog, asset prompts, marketing plan, completion report, playtest record, release checklist, metrics sheet, assets/tests directories, and shared-system lock. Templates show PENDING until real work and evidence replace them. No game or Universal Blocks Engine has been implemented by this setup.
+Each game receives its own `game.json`, Rojo project, spec, decisions, backlog, asset prompts, marketing plan, completion report, playtest record, release checklist, metrics sheet, assets/tests directories, and shared-system lock. Templates show PENDING until real work and evidence replace them. Rule Stack and Don't Match Me are now DEV-COMPLETE, awaiting Snow's playtest. Four reusable packages are available in [shared-systems](shared-systems/README.md); a complete Universal Blocks Engine is still reserved.
 
 ## Decisions still needed from Snow
 

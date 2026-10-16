@@ -7,6 +7,13 @@
             "idea": "Solo-friendly UI puzzle using the Rule Stack research spec; prepare a v1 draft for owner approval.",
             "source": "Snow, 2026-10-16, this Game Factory readiness conversation: selected Rule Stack (Recommended) when asked which researched idea to queue for a supervised dry run stopping at SPEC-PENDING.",
             "game_id": "game-001"
+        },
+        {
+            "id": "idea-002",
+            "name": "Don't Match Me",
+            "idea": "Second game in the imported research build order: simultaneous hidden-symbol choices, reveal and scoring, with bots for solo/low population and no 3D map. Prepare a concrete v1 spec for Snow's approval.",
+            "source": "Snow, 2026-10-16, this conversation: 'can you move the 2nd game'. Interpreted as the second entry in knowledge-base/microgames/README.md's research-recommended build order: Don't Match Me. This requests advancing to the next game, not approval of an unseen implementation spec or a monetization exception.",
+            "game_id": "game-002"
         }
     ]
 }

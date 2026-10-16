@@ -1,6 +1,6 @@
 # Knowledge library
 
-There are **zero verified source-game lessons**. Imported research is kept separately from tested lessons. `_template.md` is a blank authoring template, not a knowledge entry.
+There are two verified source-game lessons within the pure-logic test boundary: [staged rules and duplicate intents](rule-stack-kernel.md), and [hidden-choice snapshots and acknowledgement recovery](dont-match-me-private-acks.md). Engine, device and gameplay feel remain unverified. Imported research is kept separately from tested lessons. `_template.md` is a blank authoring template, not a knowledge entry.
 
 Add entries only for important, reusable findings such as mobile UI, networking, saving, or exploit prevention. Load only entries relevant to the current work.
 

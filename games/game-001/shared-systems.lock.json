@@ -1,4 +1,23 @@
 {
     "schema_version": 1,
-    "systems": []
+    "systems": [
+        {
+            "name": "seeded-random",
+            "version": "1.0.0",
+            "source": "shared-systems/seeded-random/1.0.0",
+            "sha256": "efe7178c62a16f176aa18f461a286e9bcef9796aa848e6d9f7eb1da347dc1844",
+            "files": {
+                "SeededRandom.luau": "src/server/Systems/SeededRandom.luau"
+            }
+        },
+        {
+            "name": "token-bucket",
+            "version": "1.0.0",
+            "source": "shared-systems/token-bucket/1.0.0",
+            "sha256": "9e493f68c0c5fd7098aa3204659e3a1630f60344a6c06000288fd56e3f64be28",
+            "files": {
+                "TokenBucket.luau": "src/server/Systems/TokenBucket.luau"
+            }
+        }
+    ]
 }
