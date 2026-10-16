@@ -3,10 +3,18 @@
     "id": "game-002",
     "name": "Don't Match Me",
     "idea_id": "idea-002",
-    "stage": "SPEC-PENDING",
+    "stage": "BUILDING",
     "completion": null,
     "approvals": {
-        "spec": null,
+        "spec": {
+            "by": "Snow",
+            "at": "2026-10-16",
+            "revision": "9749d9f5d13aa03832a39d2bd67f3fc499a30942",
+            "path": "games/game-002/spec.md",
+            "sha256": "f16bfa5b8594d3d4b29265a9e761a29e6617060654d6ac6f7c18027814f95136",
+            "no_monetization_v1": true,
+            "evidence": "Snow, 2026-10-16, this conversation: 'approve and move to the next game', responding directly to the request to approve game-002/spec.md at 9749d9f5d13aa03832a39d2bd67f3fc499a30942 including the no-monetization v1 exception. Approval applies to Don't Match Me v1. Game-003 is not approved; the two-game playtest cap still applies."
+        },
         "playtest": null,
         "publish": null
     },

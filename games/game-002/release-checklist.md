@@ -1,21 +1,16 @@
-# Don't Match Me — release checklist
+# Don't Match Me release checklist
 
-Game: game-002 · Status: PENDING · Publishing approval: PENDING
+Current target: DEV-COMPLETE only. No test/live place IDs or publishing approval exist.
 
-- [ ] Snow approved the completed spec; evidence recorded.
-- [ ] Full approved loop is playable; required checks pass for the candidate commit.
-- [ ] Completion report and minor-bug backlog are current.
-- [ ] Snow playtested mobile and multiplayer behavior and approved PLAYTESTED.
-- [ ] Every correction from Snow is captured as a knowledge rule.
-- [ ] Server validation covers hits, round state, scores, rewards, and client requests.
-- [ ] Required asset sources, rights, and final asset IDs are recorded.
-- [ ] Boost, rewarded ad availability, and rewards match the approved scope.
-- [ ] Shared systems are pinned; no older game is broken by shared changes.
-- [ ] Test/live place references and the exact candidate commit are recorded.
-- [ ] Snow explicitly approved publishing this candidate; evidence and date recorded.
-- [ ] Snow or an explicitly authorized human performed publishing.
-- [ ] Live verification and Creator Dashboard metrics plan are recorded.
+- [x] Snow approved spec.md at 9749d9f, including the game-specific no-monetization v1 exception. Exact evidence in game.json.
+- [x] Full approved core, pure modules/tests, thin adapters, native mobile-oriented UI and owner matrix implemented.
+- [ ] Final check outcome and verified implementation revision: completion-report.md and game.json.
+- [ ] Snow's actual Studio/multi-client/emulator/phone tests and corrections.
+- [ ] First meaningful pick within about 20 seconds unaided, ten-round and repeat-match fun review.
+- [ ] Final icon/thumbnail/source rights and listing description approved by Snow.
+- [ ] Re-verify current platform requirements before any launch.
+- [ ] Owner configures capacity 16 and separate test/live places; restrict servePlaceIds to the test place when IDs exist.
+- [ ] Explicit approval of a tested candidate before any upload/release; all Roblox actions owner-only.
 
-Never publish autonomously. Mark RELEASE-READY only after Snow approves publishing; mark LIVE only after a real publish. Winner updates must be developed in a separate test place and receive Snow's approval before going live.
-
-Candidate commit: PENDING · Test place: PENDING · Live place: PENDING · Publish evidence: PENDING
+Draft listing: **Don't Match Me** — "Pick a symbol secretly, reveal together and outthink the crowd. Rules change every two rounds; play solo with bots or with up to 16 players."
+Suggested description: simultaneous-choice UI party game; verify current Creator Hub genre choices at release time. No monetization, XP, ads, product IDs or persistent records in approved v1. No main-branch merge, Roblox publish or release is implied by GitHub code sync.

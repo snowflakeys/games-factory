@@ -1,25 +1,21 @@
-# Don't Match Me — assets needed
+# Don't Match Me assets needed
 
-Game: game-002 · Status: PENDING
+v1 works with native UI, glyphs and text. No external assets exist or are required for the approved core loop. Follow the starter art bible: simple readable shapes, text with color cues, high contrast, honest gameplay. Visual direction for this prototype is warm cream paper, dark ink, coral accents and teal lock highlights, distinct from Rule Stack. Final art remains subject to Snow's review.
 
-Follow [the art style bible](../../agent-instructions/art-style-bible.md). Replace bracketed details from the approved spec and Snow's style choices before pasting. These are prompt shells, not evidence that assets exist. Snow creates/uploads the results. Record sources and usage rights in `assets/README.md`.
+## Icon — 512x512
 
-## Game icon — prompt shell
+> Create a 512x512 square Roblox game icon for "Don't Match Me", a pure UI simultaneous-choice party game. On warm cream paper show four large, crisp cards with distinct circle, star, triangle and square symbols, thick dark ink borders and coral/teal/pastel accents. Three smaller symbolic picks cluster on a repeated star while a single teal-ringed circle stands apart as the winning unique pick. Flat native-UI-like shapes, playful but uncluttered, strong focal point readable at 150x150, 10 percent crop-safe padding. No words, watermark, avatars, scenery, currency, betting imagery or progression rewards.
 
-> Create a square Roblox game icon for "Don't Match Me". Show [the approved core action] with [one recognizable subject] and a clear focal point readable at a small size. Use [approved palette], [approved shape/render style], and [approved lighting] from the game's art style bible. Expression and mood: [approved mood]. Keep the composition simple and leave [approved crop/safe space]. No tiny text, watermark, or unrelated features. Output a clean square image.
+## Thumbnail — 1920x1080
 
-## Thumbnail — prompt shell
+> Create a 1920x1080 landscape thumbnail for "Don't Match Me". Pure flat UI composition on warm cream paper: four large labeled-by-shape symbol cards (circle, star, triangle, square), a clean reveal row with several repeated star picks and one isolated circle pick highlighted teal. Use dark ink outlines, coral headers and pastel card fills, with a readable central moment of one unique pick beating the matching crowd. Leave the outer 8 percent clear for crop. No invented readable text, 3D environment, characters, currencies, gambling, watermark or claims of features absent from the game.
 
-> Create a landscape 16:9 Roblox game thumbnail for "Don't Match Me". Depict [the approved clippable moment] with [player subject] in [the approved arena/environment]. Make the action and stakes readable immediately. Match the icon's approved palette, shapes, rendering, and lighting: [paste approved style rules]. Use a strong focal point and uncluttered mobile-readable composition. No misleading gameplay, tiny text, watermark, or unapproved characters.
+## Optional future reveal effect — transparent PNG
 
-## Effect / UI texture — prompt shell
+> Create one isolated crisp teal check burst for a flat paper-style party-game UI. Transparent 512x512 PNG, dark ink outline, simple teal check with a few short coral and cream rays, no glow blur, scene, text or watermark. Center it with 20 percent transparent padding. Readable around 64 to 96 pixels. Intended for optional future score/reveal polish; the native UI currently works without it.
 
-> Create a transparent-background game effect asset for "Don't Match Me": [the effect required by the approved core loop]. Style: [approved palette and rendering rules]. Use one isolated effect centered with enough transparent padding for cropping. Keep the silhouette clear at small scale, with no scene background, text, watermark, or unrelated objects. Output a transparent PNG. Intended in-game use: [purpose and rough display size].
-
-## Asset tracking
-
-| Asset | Required by core loop? | Prompt finalized | Source / rights | Roblox asset ID | Status |
-| --- | --- | --- | --- | --- | --- |
-| Icon | PENDING | PENDING | PENDING | PENDING | PENDING |
-| Thumbnail | PENDING | PENDING | PENDING | PENDING | PENDING |
-| Effect / UI texture | PENDING | PENDING | PENDING | PENDING | PENDING |
+| Asset | Needed for core v1 | Source/rights | Roblox ID | Status |
+| --- | --- | --- | --- | --- |
+| Icon | No, listing art | Not created | None | Prompt ready |
+| Thumbnail | No, listing art | Not created | None | Prompt ready |
+| Reveal effect | No, future polish | Not created | None | Prompt ready |

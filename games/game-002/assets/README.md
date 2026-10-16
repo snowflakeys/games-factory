@@ -6,4 +6,4 @@ Store game-specific source assets and a small manifest here. Follow [the art sty
 
 For every imported asset, record filename, purpose, source/creator, usage rights, Roblox asset ID, and import date. Use PENDING for missing facts. Do not commit secrets, unlicensed assets, or large generated build files.
 
-No artwork has been generated or imported for this scaffold.
+No external artwork has been generated or imported. Native text/glyph UI implements the core loop; finalized optional listing/effect prompts are in ../assets-needed.md.
