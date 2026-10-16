@@ -1,25 +1,23 @@
-# Rule Stack — assets needed
+# Rule Stack assets needed
 
-Game: game-001 · Status: PENDING
+Development uses native labeled UI only. The following finalized prompts follow the starter art bible; Snow has not yet approved final artwork. No generated/uploaded assets or external IP are claimed. Icon and thumbnail are release art; the effect is optional v1.1 polish.
 
-Follow [the art style bible](../../agent-instructions/art-style-bible.md). Replace bracketed details from the approved spec and Snow's style choices before pasting. These are prompt shells, not evidence that assets exist. Snow creates/uploads the results. Record sources and usage rights in `assets/README.md`.
+## Icon, 512x512
 
-## Game icon — prompt shell
+> Create a square 512x512 Roblox game icon for "Rule Stack", a solo 4x4 token-placement logic puzzle. Show a close straight-on navy puzzle board with simple red, blue, yellow and green tokens, each marked by a clear circle, star or triangle and a large number 1 to 4. A single empty corner cell glows mint beside one hovering legal token. Use flat crisp shapes, rounded squares, off-white marks, navy outlines, high contrast and no tiny details; readable at 150x150. Solid deep navy background, centered board with safe crop padding. No text, watermark, characters, currency, 3D world or features absent from the game.
 
-> Create a square Roblox game icon for "Rule Stack". Show [the approved core action] with [one recognizable subject] and a clear focal point readable at a small size. Use [approved palette], [approved shape/render style], and [approved lighting] from the game's art style bible. Expression and mood: [approved mood]. Keep the composition simple and leave [approved crop/safe space]. No tiny text, watermark, or unrelated features. Output a clean square image.
+## Thumbnail, 1920x1080
 
-## Thumbnail — prompt shell
+> Create a landscape 1920x1080 game thumbnail for "Rule Stack". Pure UI puzzle composition: a nearly full 4x4 navy board, red/blue/yellow/green tokens with circle/star/triangle marks and numbers 1 to 4, one legal empty edge cell highlighted mint, and a next-token card aligned to the right. Four simple rule cards frame the board, with readable visual symbols for color, edge, row and number restrictions; no invented readable rule text. The focal action is placing the final legal token as rules accumulate. Flat crisp native-UI-like rounded rectangles, off-white typography marks, high contrast, no scene or characters. Leave the outer 8 percent clear for cropping. No watermark, currency, multiplayer claims or progression rewards.
 
-> Create a landscape 16:9 Roblox game thumbnail for "Rule Stack". Depict [the approved clippable moment] with [player subject] in [the approved arena/environment]. Make the action and stakes readable immediately. Match the icon's approved palette, shapes, rendering, and lighting: [paste approved style rules]. Use a strong focal point and uncluttered mobile-readable composition. No misleading gameplay, tiny text, watermark, or unapproved characters.
+## Optional placement effect, transparent PNG
 
-## Effect / UI texture — prompt shell
+> Create one isolated subtle mint ring burst for "Rule Stack", a navy flat-UI token puzzle. Transparent background, 512x512 PNG, crisp simple rounded dashes around a clear empty center, off-white highlights and restrained mint palette, no glow blur, no text or watermark. Keep 20 percent transparent padding. Intended as optional future feedback around a 48 to 80 pixel board cell, not a scene or character. No other elements.
 
-> Create a transparent-background game effect asset for "Rule Stack": [the effect required by the approved core loop]. Style: [approved palette and rendering rules]. Use one isolated effect centered with enough transparent padding for cropping. Keep the silhouette clear at small scale, with no scene background, text, watermark, or unrelated objects. Output a transparent PNG. Intended in-game use: [purpose and rough display size].
+| Asset | Needed for current core loop | Source / rights | Roblox ID | Status |
+| --- | --- | --- | --- | --- |
+| Icon | No, release listing | Not created | None | Prompt ready |
+| Thumbnail | No, release listing | Not created | None | Prompt ready |
+| Placement effect | No, v1.1 polish | Not created | None | Prompt ready |
 
-## Asset tracking
-
-| Asset | Required by core loop? | Prompt finalized | Source / rights | Roblox asset ID | Status |
-| --- | --- | --- | --- | --- | --- |
-| Icon | PENDING | PENDING | PENDING | PENDING | PENDING |
-| Thumbnail | PENDING | PENDING | PENDING | PENDING | PENDING |
-| Effect / UI texture | PENDING | PENDING | PENDING | PENDING | PENDING |
+Record actual sources and rights in assets/README.md only after Snow supplies real files.

@@ -1,7 +1,9 @@
-# Mobile HUD reference
+# Rule Stack client
 
-`MobileHud.luau` is an opt-in placeholder UI module, not game art or gameplay. In Studio, set the `ShowHudExample` boolean attribute on the cloned `Main` LocalScript to true and start Play. It stays off by default in newly scaffolded games.
+Main.client.luau binds Roblox input, sends semantic intents and consumes authoritative acknowledgements. View.luau constructs native UI and renders server snapshots; it never owns score, strikes or outcomes. Rules provides shared legality preview only; the server repeats every check.
 
-The ScreenGui uses `CoreUISafeInsets`. A top-center status panel and bottom-center 64-pixel-high action button use relative placement and width constraints. The lower corners are left clear for default Roblox controls. TextButton.Activated supports touch, mouse and selected gamepad activation. The callback prints a local demonstration message only; real scores, rewards, and state must be server-owned.
+Tap the next token, tap a board cell to preview, then PLACE. Dragging the token to a cell is an optional direct commit. Releasing outside, cancellation and focus loss send no placement. Primary controls remain locked until a response; a three-second timeout sends read-only sync rather than replaying the placement.
 
-Before copying into a game, use Studio's Device Emulator with a small phone, notched landscape phone, portrait phone, and tablet. Check the status stays readable, button stays within the safe region, default movement controls do not overlap, and one touch produces one callback. Check mouse and gamepad activation, respawn, and teardown via ScreenGui:Destroy(). Validate on a real phone as well. These are required manual checks, not claims that this reference has passed them.
+The ScreenGui uses CoreUISafeInsets and ResetOnSpawn=false. Layout computes a 4x4 board with at least 48px targets, 6px gutters, and portrait/landscape arrangements. Primary buttons are at least 52px tall. Rules scroll independently; the overall viewport can scroll on unusually short safe areas. Board labels pair color initials with shape abbreviation and number: R/B/Y/G and CIR/STAR/TRI. The next token uses full words.
+
+No avatar or 3D map is required. No hidden sequence, seed, future predicate IDs or witness is sent to this client. See ../../playtest.md for the required Studio/device matrix. Local logic/build success is not device or engine verification.

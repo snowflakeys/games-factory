@@ -1,30 +1,51 @@
-# Rule Stack — completion report
+# Rule Stack v1 completion report
 
-Game: game-001 · Report date: 2026-10-16 · Status: NOT COMPLETE
+Date: 2026-10-16 (Europe/Istanbul). Environment: cloud/headless Linux. Target: DEV-COMPLETE only; no playtest or release approval implied.
 
-## Approved scope and result
+## Approval and implemented scope
 
-The draft is in spec.md; Snow has not approved it. The supervised dry run only scaffolded this project and wrote the draft. No Rule Stack gameplay is implemented.
+Snow approved `games/game-001/spec.md` at `4aee649`, explicitly including no monetization, XP, purchases or ads for v1. The exact message, full approved commit and spec SHA-256 are recorded in game.json. The spec file remains byte-for-byte unchanged; its historical draft status is superseded by the actual approval record.
 
-## Required verification
+Implemented the complete solo loop: tap token, preview cell, commit or drag, authoritative legality/score/strike response, rule additions after 4/8/12 accepted placements, 16-cell victory or two-strike/dead-end loss, immediate restart. Includes all six predicates, a deterministic 16-token generator, staged-board compatibility, complete hidden witness validation, bounded fallback, per-player sessions, stale/duplicate/schema/range/rate validation, and read-only acknowledgement recovery. Disconnect deletes the ephemeral run; respawn/sync retains the existing run. No map, avatar, saved progression, timer or reward multipliers.
 
-| Check | Result | Evidence / date |
-| --- | --- | --- |
-| Formatter | PASS | 2026-10-16 full offline check; scaffold only |
-| Lint | PASS | Selene: zero errors/warnings with pinned std, offline |
-| Logic tests | PASS (scaffold only) | 51 round-state assertions; no puzzle rules implemented |
-| Rojo build | PASS | Local Rule Stack scaffold build, no upload |
-| Repository / gate validation | PASS | SPEC-PENDING with all approvals null |
-| Multiplayer / mobile manual checks | NOT RUN | PENDING |
+The native ScreenGui uses CoreUISafeInsets, labeled colored tokens, >=48px board targets, 52px primary actions, responsive portrait/landscape placement and scrollable rule explanations. Optional mouse/touch dragging cancels outside the board and on focus loss. These behaviors are implemented; engine/device verification remains NOT RUN.
 
-## Known issues
+## Changed files and architecture
 
-PENDING — link minor bugs in `backlog.md`; resolve core-loop blockers before DEV-COMPLETE.
+- `src/shared/Rules.luau`: pure board model, predicates, staged evaluation and available-cell search; `Layout.luau`: logical geometry.
+- `src/server/Generator.luau`, `Run.luau`, `Sessions.luau`: engine-free seeded generation, hidden state and transitions, semantic validation and per-player limits, injected into Roblox and Lune without alternate rule implementations.
+- `src/server/Main.server.luau`: service wiring, GUID/seed creation, per-player lifecycle and one validated RemoteEvent. Only public snapshots replicate; seed, future order/sequence and witness stay server-side.
+- `src/client/Main.client.luau`, `View.luau`: input, previews, in-flight locks, timeout sync and native rendering. Replaced game-001 scaffold RoundState/MobileHud; the original template is unchanged.
+- `tests/run.luau` and test/client READMEs, decisions, backlog, owner playtest, release checklist, assets-needed and marketing docs. Added the narrowly VERIFIED pure-logic lesson `knowledge-base/rule-stack-kernel.md` and updated its index.
+- Approval, registry/checkpoint and completion metadata document the handoff. No external shared systems; existing empty lock is accurate. Other game/template source and factory checks are unchanged.
 
-## Handoff to Snow
+## Required checks
 
-Next: review spec.md, including the proposed monetization exception. No test place is configured; no playable puzzle exists yet. Snow's playtest is NOT RUN. Publishing approval is PENDING. DEV-COMPLETE is not tested or release-ready.
+Command: `python scripts/check.py`, repository root. Every required local check passed. No checker was weakened or skipped. Hosted CI is not yet observed.
 
-## Lessons
+| Check | Outcome |
+| --- | --- |
+| Factory files, registry, WIP and actual approval gates | PASS |
+| Python syntax, JSON and repository tests | PASS, 32 tests |
+| StyLua formatting | PASS |
+| Selene against committed Roblox std | PASS, 0 errors, 0 warnings, 0 parse errors |
+| Template Lune suite | PASS, 51 round-state assertions |
+| Rule Stack Lune suite | PASS, 95,507 assertions; 1,000 deterministic seeds/witness victories and 200 alternative player paths |
+| Generator bounds / fallback | PASS; 0/1,000 normal-budget fallbacks, maximum 3/8 attempts; 3/100 one-attempt budgets exhausted into fallback; forced zero-budget fallback passed |
+| Alternative-path dead ends | 111/200 lost with zero legal next-token cells; earlier placements remained compatible with every new rule |
+| Local Rojo builds | PASS, template and game-001. Game artifact: `work/builds/game-001.rbxlx`, reproducible from source |
+| Studio, emulator, phone, actual services/network and fun | NOT RUN; separate owner gates, not local checks |
 
-PENDING — extract only important findings to the knowledge library, tag VERIFIED or UNVERIFIED, and link this source game. Convert every correction from Snow's playtest into a rule.
+Full command output was captured locally in `work/rule-stack-check.log`; the reproducible suite prints the assertion and generation counts above. CI already runs the same command on Linux and Windows. Completion metadata pins the checked implementation revision; the final metadata/report commit is checked again before handoff.
+
+## Limitations, backlog and parked work
+
+No known automated core-loop blocker. Engine execution, notches, actual hit testing, touch cancellation/dragging, respawn, latency recovery and multi-client behavior require Studio and Snow's phone. Geometry tests alone do not verify readability or touch feel. First action within about 20 seconds and ten enjoyable consecutive runs are Snow's judgments, still unverified. QA items are recorded in backlog.md and the complete matrix in playtest.md.
+
+Final icon/thumbnail artwork is absent; assets-needed.md supplies ready-to-paste prompts. Native UI labels are development art. No external asset IDs or product IDs. Daily seeds, Sprint, multiplayer race, bots, rankings, persistence, achievements, cosmetics, extra predicates, monetization, sounds and custom-art polish remain v1.1. No invented telemetry, playtest results or platform approvals.
+
+## Handoff
+
+Stop at DEV-COMPLETE after final validation. Snow's next action is local Studio playtesting with the built place and playtest.md matrix, then a real-phone test. Approvals for playtest/publish and test/live place IDs remain null. Do not begin another game in this session.
+
+No publishing helper, Roblox upload, Luau remote execution, payments, account verification, release or credential actions were performed.

@@ -3,10 +3,18 @@
     "id": "game-001",
     "name": "Rule Stack",
     "idea_id": "idea-001",
-    "stage": "SPEC-PENDING",
+    "stage": "BUILDING",
     "completion": null,
     "approvals": {
-        "spec": null,
+        "spec": {
+            "by": "Snow",
+            "at": "2026-10-16",
+            "evidence": "Snow, 2026-10-16, current Game Factory build instruction: Read AGENTS.md and follow it. I approve games/game-001/spec.md at commit 4aee649, including the no-monetization v1 exception. Record that approval in game.json with this message as evidence and move the game to BUILDING. Then build the full approved v1: pure Luau rules with Lune tests, thin Roblox adapters. Run python scripts/check.py. Commit, write the completion report, and set DEV-COMPLETE only if every check passes. Do not publish or touch any credentials. Stop at DEV-COMPLETE.",
+            "revision": "4aee64977b57bc35fae63d6ca89c13fb7e81a3ac",
+            "path": "games/game-001/spec.md",
+            "sha256": "d1ede2038c28a5f1d107aae927ce4882b89e9a611b42c928929b94e612ca7c6c",
+            "no_monetization_v1": true
+        },
         "playtest": null,
         "publish": null
     },
