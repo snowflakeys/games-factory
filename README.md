@@ -47,7 +47,7 @@ The hosted source repository is [snowflakeys/games-factory](https://github.com/s
 | `agent-instructions/` | Session checklist, definition of done, draft art-style bible |
 | `game-templates/basic-round/` | Rojo source, tested round-state helper, and game document templates |
 | `shared-systems/` | Versioned systems; Universal Blocks Engine reservation |
-| `knowledge-base/` | Empty lesson library and evidence-tagged entry template |
+| `knowledge-base/` | Imported research, platform references, and evidence-tagged lesson template |
 | `factory-state/` | Registry, Snow's idea queue, and current checkpoint |
 | `games/game-NNN/` | Each game's own source, spec, assets, tests, reports, and approvals |
 | `scripts/`, `tests/` | Tool setup, quality checks, queue/scaffold CLI, workflow tests |
@@ -66,3 +66,15 @@ Each game receives its own `game.json`, Rojo project, spec, decisions, backlog, 
 The default monetization plan is a permanent 2x boost gamepass, an optional ad for 15 minutes of XP boost, and rewards, without purchase pressure. Define the benefit in each spec; record unconfigured integrations honestly. Never grant rewards from unverified client claims.
 
 At session end, update the checkpoint and state, run the checks, and commit. Read [the session checklist](agent-instructions/session-checklist.md) and [definition of done](agent-instructions/definition-of-done.md) for the full cycle. Tool pins and maintenance instructions are in [tools/README.md](tools/README.md).
+
+
+## Research and operations pack
+
+- [Microgames catalog and draft specs](knowledge-base/microgames/README.md)
+- [Session protocol reference](agent-instructions/session-protocol.md)
+- [Shipping checklist reference](agent-instructions/ship-checklist.md)
+- [Roblox build/publish pipeline reference](agent-instructions/roblox-pipeline.md)
+- [Consolidated policy pointer](agent-instructions/proposed-policy.md)
+- [Unconfirmed planning history](factory-state/planning-reference.md)
+
+The publishing helper is owner-only, guarded by an explicit manual acknowledgement, and untested against Roblox. Agents and CI must never receive publishing keys or upload Saved/Published versions. No upload or release was performed. Existing root policy, approval gates, registry, and queue remain authoritative.

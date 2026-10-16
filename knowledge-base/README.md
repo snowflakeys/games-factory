@@ -1,6 +1,6 @@
 # Knowledge library
 
-The library starts with **zero lessons**. `_template.md` is a blank authoring template, not a knowledge entry.
+There are **zero verified source-game lessons**. Imported research is kept separately from tested lessons. `_template.md` is a blank authoring template, not a knowledge entry.
 
 Add entries only for important, reusable findings such as mobile UI, networking, saving, or exploit prevention. Load only entries relevant to the current work.
 
@@ -14,3 +14,10 @@ Each entry must:
 `VERIFIED` means the stated rule has direct, recorded evidence within its declared scope. `UNVERIFIED` means it is a hypothesis or proposed rule awaiting that evidence. Passing a narrow test does not verify unrelated behavior.
 
 Every correction from Snow's playtesting becomes a rule. Link back to the correction, explain its scope, and tag it honestly. Update a contradicted rule with the new evidence rather than leaving competing instructions without explanation.
+
+
+## Imported references
+- [Microgames research and five draft specs](microgames/README.md)
+- [Roblox platform rules reference](roblox-platform-rules.md), imported and not independently verified here
+
+Imported research is UNVERIFIED until checked within its stated scope. Recommended ideas are not queued or approved games.

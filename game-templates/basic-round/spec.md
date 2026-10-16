@@ -42,3 +42,15 @@ PENDING — describe one moment created by this loop; expand approved ideas in `
 ## Scope and acceptance
 
 PENDING — list measurable conditions for a full playable session and explicit exclusions. Build the playable loop after Snow approves this spec. DEV-COMPLETE means implementation and required checks pass; Snow's playtest and publishing approval are separate gates.
+
+## Frozen v1 scope
+
+PENDING — enumerate the exact approved features and measurable acceptance criteria. Identify the approved revision in game.json before BUILDING.
+
+## v1.1 backlog
+
+PENDING — park later requests here unless Snow explicitly revises the approved v1 scope.
+
+## Test boundary
+
+PENDING — identify pure rules and their Lune tests, thin Roblox adapters, and the Studio/mobile checks still required. A local build does not verify engine behavior or usability.
