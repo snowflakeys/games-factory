@@ -2,10 +2,11 @@
     "schema_version": 1,
     "owner": "Snow",
     "updated_on": "2026-10-16",
-    "active_game": null,
-    "next_game_number": 2,
+    "active_game": "game-002",
+    "next_game_number": 3,
     "max_waiting_for_playtest": 2,
     "games": [
-        "game-001"
+        "game-001",
+        "game-002"
     ]
 }
