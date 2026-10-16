@@ -6,8 +6,8 @@
     "stage": "DEV-COMPLETE",
     "completion": {
         "at": "2026-10-16",
-        "revision": "e9e5f5159c205c94fca721b0ab3e712f6f6f8005",
-        "evidence": "python scripts/check.py PASS in cloud/headless Linux: 32 Python tests; StyLua PASS; Selene 0 errors/warnings/parse errors; template 51 assertions; Rule Stack 95,507 assertions including 1,000 seed/witness replays, 200 alternative paths, bounded fallback and remote/session validation; 2 local Rojo builds. See games/game-001/completion-report.md. Studio/device/fun and hosted CI are not claimed.",
+        "revision": "310692363de43e8755131f3a0e62b5706cbe9bff",
+        "evidence": "Snow requested \"extract the systems\". Versioned shared-system maintenance of approved v1; python scripts/check.py PASS in cloud/headless Linux: 45 Python tests; package/copy hash and dependency checks; StyLua; Selene 0 errors/warnings/parse errors; 3,119 shared-system assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769 with 10,080 seeded rounds, 480 replay rounds and 1,875 scoring configurations; all 3 Rojo builds. Pre-extraction comparison: 1,000 complete puzzles and 6,000 bot choices identical. GitHub source tree b8f28f0a992e9766022a7103976d8091685bb421 matches the tested local tree. See shared-systems/extraction-report.md and this game's completion report. Studio/device/fun and hosted CI not claimed.",
         "core_loop": "Full approved solo loop: preview/commit or drag token, server-confirmed rules and strikes, staged compatible rules at 4/8/12, victory or loss, immediate fresh-run restart. No monetization in approved v1.",
         "checks": {
             "formatter": "PASS",

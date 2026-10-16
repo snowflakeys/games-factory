@@ -28,6 +28,6 @@ Game-specific rules, score calculations, phase/roster transitions, snapshot filt
 
 ## Handoff
 
-GitHub branch: `refactor/extract-shared-systems`. Final source revision is recorded in both games' game.json and completion reports after the final check. Existing spec bytes, Snow's approval evidence, no-monetization exceptions, null playtest/publish approvals and null place IDs are retained. Both games remain DEV-COMPLETE, filling 2/2 awaiting-playtest slots. No game-003 is started. No main merge, Roblox upload/release, remote execution or credential access.
+GitHub branch: `refactor/extract-shared-systems`. Verified source revision: `310692363de43e8755131f3a0e62b5706cbe9bff`, source tree `b8f28f0a992e9766022a7103976d8091685bb421` exactly matches the checked local implementation. Recorded in both games' game.json and completion reports. Final handoff changes only metadata/reports, with the full checker run again. Existing spec bytes, Snow's approval evidence, no-monetization exceptions, null playtest/publish approvals and null place IDs are retained. Both games remain DEV-COMPLETE, filling 2/2 awaiting-playtest slots. No game-003 is started. No main merge, Roblox upload/release, remote execution or credential access.
 
 Future reuse: follow [package install and wiring instructions](README.md). Use new package versions for future changes and review each game's upgrade explicitly. This extraction is verified within local pure-logic/build boundaries; hosted CI and Studio/phone behavior are not claimed.

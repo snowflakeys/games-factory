@@ -6,8 +6,8 @@
     "stage": "DEV-COMPLETE",
     "completion": {
         "at": "2026-10-16",
-        "revision": "25905218c090d7794c5f0e0e15b6112d1d2e59b0",
-        "evidence": "python scripts/check.py PASS in cloud/headless Linux: 32 Python tests; StyLua; Selene 0 errors/warnings/parse errors; template 51 assertions; unchanged game-001 95,507 assertions; game-002 444,169 assertions, 10,080 seeded rounds plus 480 replay rounds and 1,875 exhaustive scoring configurations; 3 local Rojo builds. See games/game-002/completion-report.md. GitHub source tree matches the checked local source. Studio/device/fun and hosted CI remain unverified.",
+        "revision": "310692363de43e8755131f3a0e62b5706cbe9bff",
+        "evidence": "Snow requested \"extract the systems\". Versioned shared-system maintenance of approved v1; python scripts/check.py PASS in cloud/headless Linux: 45 Python tests; package/copy hash and dependency checks; StyLua; Selene 0 errors/warnings/parse errors; 3,119 shared-system assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769 with 10,080 seeded rounds, 480 replay rounds and 1,875 scoring configurations; all 3 Rojo builds. Pre-extraction comparison: 1,000 complete puzzles and 6,000 bot choices identical. GitHub source tree b8f28f0a992e9766022a7103976d8091685bb421 matches the tested local tree. See shared-systems/extraction-report.md and this game's completion report. Studio/device/fun and hosted CI not claimed.",
         "core_loop": "Full approved v1: 1-16 humans with bots filling four seats, secret choices and fixed server reveal, UNIQUE/PAIRS/MINORITY scoring through eight rounds, authoritative totals/shared winners, joins/reconnects and fast/automatic rematch. Native touch UI, pure rules/bots/match/protocol/controller tests, no monetization.",
         "checks": {
             "formatter": "PASS",
