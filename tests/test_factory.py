@@ -200,6 +200,80 @@ class FactoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "test place"):
             factory.validate(self.root)
 
+    def test_rojo_sync_is_restricted_before_release_in_every_stage(self):
+        game_id = self.new()
+        for stage in factory.STAGES:
+            with self.subTest(stage=stage):
+                path, game = self.set_stage(game_id, stage)
+                if stage == "DEAD":
+                    game["dead_reason"] = "NOT FUN"
+                game["places"] = {"test": 10, "live": 20}
+                factory.write_json(path, game)
+                project_path = path.parent / "default.project.json"
+                project = factory.read_json(project_path)
+                project["servePlaceIds"] = [10]
+                factory.write_json(project_path, project)
+                factory.validate(self.root)
+                for targets in (None, [], [20], [10, 20], [11], [True], [10.0], "10"):
+                    with self.subTest(targets=targets):
+                        if targets is None:
+                            project.pop("servePlaceIds", None)
+                        else:
+                            project["servePlaceIds"] = targets
+                        factory.write_json(project_path, project)
+                        with self.assertRaisesRegex(ValueError, "restrict servePlaceIds to the test place"):
+                            factory.validate(self.root)
+
+    def test_test_place_can_be_configured_before_live_place(self):
+        game_id = self.new()
+        path = self.root / "games" / game_id / "game.json"
+        game = factory.read_json(path)
+        game["places"]["test"] = 10
+        factory.write_json(path, game)
+        project_path = path.parent / "default.project.json"
+        project = factory.read_json(project_path)
+        project["servePlaceIds"] = [10]
+        factory.write_json(project_path, project)
+        factory.validate(self.root)
+
+        game["places"]["test"] = 1
+        factory.write_json(path, game)
+        for targets in ([True], [1.0]):
+            with self.subTest(targets=targets):
+                project["servePlaceIds"] = targets
+                factory.write_json(project_path, project)
+                with self.assertRaisesRegex(ValueError, "restrict servePlaceIds"):
+                    factory.validate(self.root)
+
+    def test_live_place_and_sync_targets_require_a_known_test_place(self):
+        game_id = self.new()
+        path = self.root / "games" / game_id / "game.json"
+        game = factory.read_json(path)
+        project_path = path.parent / "default.project.json"
+        project = factory.read_json(project_path)
+        for places, targets in (({"test": None, "live": 20}, None),
+                                ({"test": None, "live": None}, [10])):
+            with self.subTest(places=places, targets=targets):
+                game["places"] = places
+                factory.write_json(path, game)
+                if targets is not None:
+                    project["servePlaceIds"] = targets
+                factory.write_json(project_path, project)
+                with self.assertRaisesRegex(ValueError, "configure a test place"):
+                    factory.validate(self.root)
+
+    def test_pre_release_place_ids_must_be_valid_and_distinct(self):
+        path = self.root / "games" / self.new() / "game.json"
+        game = factory.read_json(path)
+        for places in (None, {}, {"test": None}, {"test": True, "live": None},
+                       {"test": 0, "live": None}, {"test": "10", "live": None},
+                       {"test": 10, "live": -1}, {"test": 10, "live": 10}):
+            with self.subTest(places=places):
+                game["places"] = places
+                factory.write_json(path, game)
+                with self.assertRaisesRegex(ValueError, "place"):
+                    factory.validate(self.root)
+
     def test_dead_requires_exact_reason(self):
         path, game = self.set_stage(self.new(), "DEAD")
         with self.assertRaisesRegex(ValueError, "DEAD classification"):

@@ -37,6 +37,8 @@ Do not fill approval records from agent decisions or passing checks. Spec approv
 
 `places.test` and `places.live` start null. Supply distinct positive place IDs before RELEASE-READY and restrict Rojo live syncing to the test place with `servePlaceIds`. Winning-game updates are developed in the separate test place and need fresh Snow approval for each live update.
 
+Place restrictions are checked at every stage, including SPEC-PENDING and BUILDING. Local-only scaffolds may keep both IDs null and omit `servePlaceIds`. Once either place ID or `servePlaceIds` is configured, record a positive integer `places.test` and set the Rojo project's `servePlaceIds` to exactly `[places.test]`. Configure the test place before recording a live ID; a live ID can stay null until release preparation. Unrestricted, empty, live, or mixed sync targets fail validation. Passing this metadata check does not verify an open Studio session's actual connection or authorize an upload.
+
 ## Development completion evidence
 
 `game.json` starts with `completion: null`. DEV-COMPLETE and subsequent successful stages require this record in addition to the report:

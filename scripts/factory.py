@@ -144,12 +144,23 @@ def validate(root=ROOT):
             require(approval_valid(approvals["playtest"]), f"{game_id}: Snow's playtest evidence required")
         if stage in {"RELEASE-READY", "LIVE", "WINNER"}:
             require(approval_valid(approvals["publish"]), f"{game_id}: Snow's publish approval required")
-            places = game.get("places", {})
-            require(all(type(places.get(key)) is int and places[key] > 0 for key in ("test", "live")),
-                    f"{game_id}: test and live place IDs required")
+        places = game.get("places")
+        require(isinstance(places, dict) and all(key in places for key in ("test", "live")),
+                f"{game_id}: missing test/live place slots")
+        for key in ("test", "live"):
+            require(places[key] is None or (type(places[key]) is int and places[key] > 0),
+                    f"{game_id}: {key} place ID must be null or a positive integer")
+        if places["test"] is not None and places["live"] is not None:
             require(places["test"] != places["live"], f"{game_id}: test and live places must differ")
-            project = read_json(folder / "default.project.json")
-            require(project.get("servePlaceIds") == [places["test"]],
+        if stage in {"RELEASE-READY", "LIVE", "WINNER"}:
+            require(all(places[key] is not None for key in ("test", "live")),
+                    f"{game_id}: test and live place IDs required")
+        project = read_json(folder / "default.project.json")
+        if any(places[key] is not None for key in ("test", "live")) or "servePlaceIds" in project:
+            require(places["test"] is not None, f"{game_id}: configure a test place before Rojo sync")
+            targets = project.get("servePlaceIds")
+            require(isinstance(targets, list) and len(targets) == 1
+                    and type(targets[0]) is int and targets[0] == places["test"],
                     f"{game_id}: restrict servePlaceIds to the test place")
         require(game.get("dead_reason") in {"NOT FUN", "NOT DISCOVERED"} if stage == "DEAD"
                 else game.get("dead_reason") is None, f"{game_id}: invalid DEAD classification")
