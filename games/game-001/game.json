@@ -3,10 +3,29 @@
     "id": "game-001",
     "name": "Rule Stack",
     "idea_id": "idea-001",
-    "stage": "SPEC-PENDING",
-    "completion": null,
+    "stage": "DEV-COMPLETE",
+    "completion": {
+        "at": "2026-10-16",
+        "revision": "310692363de43e8755131f3a0e62b5706cbe9bff",
+        "evidence": "Snow requested \"extract the systems\". Versioned shared-system maintenance of approved v1; python scripts/check.py PASS in cloud/headless Linux: 45 Python tests; package/copy hash and dependency checks; StyLua; Selene 0 errors/warnings/parse errors; 3,119 shared-system assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769 with 10,080 seeded rounds, 480 replay rounds and 1,875 scoring configurations; all 3 Rojo builds. Pre-extraction comparison: 1,000 complete puzzles and 6,000 bot choices identical. GitHub source tree b8f28f0a992e9766022a7103976d8091685bb421 matches the tested local tree. See shared-systems/extraction-report.md and this game's completion report. Studio/device/fun and hosted CI not claimed.",
+        "core_loop": "Full approved solo loop: preview/commit or drag token, server-confirmed rules and strikes, staged compatible rules at 4/8/12, victory or loss, immediate fresh-run restart. No monetization in approved v1.",
+        "checks": {
+            "formatter": "PASS",
+            "lint": "PASS",
+            "logic": "PASS",
+            "build": "PASS"
+        }
+    },
     "approvals": {
-        "spec": null,
+        "spec": {
+            "by": "Snow",
+            "at": "2026-10-16",
+            "evidence": "Snow, 2026-10-16, current Game Factory build instruction: Read AGENTS.md and follow it. I approve games/game-001/spec.md at commit 4aee649, including the no-monetization v1 exception. Record that approval in game.json with this message as evidence and move the game to BUILDING. Then build the full approved v1: pure Luau rules with Lune tests, thin Roblox adapters. Run python scripts/check.py. Commit, write the completion report, and set DEV-COMPLETE only if every check passes. Do not publish or touch any credentials. Stop at DEV-COMPLETE.",
+            "revision": "4aee64977b57bc35fae63d6ca89c13fb7e81a3ac",
+            "path": "games/game-001/spec.md",
+            "sha256": "d1ede2038c28a5f1d107aae927ce4882b89e9a611b42c928929b94e612ca7c6c",
+            "no_monetization_v1": true
+        },
         "playtest": null,
         "publish": null
     },

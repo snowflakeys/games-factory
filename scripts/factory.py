@@ -8,6 +8,11 @@ import tempfile
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+if __package__:
+    from .shared_systems import catalog, validate_lock
+else:
+    from shared_systems import catalog, validate_lock
+
 ROOT = Path(__file__).resolve().parents[1]
 STAGES = (
     "SPEC-PENDING", "BUILDING", "DEV-COMPLETE", "PLAYTESTED",
@@ -113,6 +118,7 @@ def validate(root=ROOT):
             require(selected not in selected_games, "Game selected by multiple ideas")
             selected_games.add(selected)
 
+    catalog(root)
     records = []
     for game_id in ids:
         folder = root / "games" / game_id
@@ -165,12 +171,7 @@ def validate(root=ROOT):
         require(game.get("dead_reason") in {"NOT FUN", "NOT DISCOVERED"} if stage == "DEAD"
                 else game.get("dead_reason") is None, f"{game_id}: invalid DEAD classification")
         lock = read_json(folder / "shared-systems.lock.json")
-        require(lock.get("schema_version") == 1 and isinstance(lock.get("systems"), list),
-                f"{game_id}: invalid shared-system lock")
-        for system in lock["systems"]:
-            require(isinstance(system, dict) and all(isinstance(system.get(key), str) and system[key].strip()
-                    for key in ("name", "version", "source", "sha256")), f"{game_id}: unpinned shared system")
-            require(re.fullmatch(r"[0-9a-f]{64}", system["sha256"]), f"{game_id}: invalid shared-system SHA-256")
+        validate_lock(root, folder, lock)
         records.append(game)
 
     pending = [game["id"] for game in records if game["stage"] in PREPARATION]

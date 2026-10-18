@@ -1,25 +1,31 @@
-# Rule Stack — Snow's playtest
+# Rule Stack owner playtest
 
-Game: game-001 · Status: NOT RUN · Snow's approval: PENDING
+Status: NOT RUN. Only Snow can record PLAYTESTED. No engine session or physical device is available in this cloud environment.
 
-- Test date, build/commit, and test place: PENDING
-- Device / screen size / network / player count: PENDING
-- Tester: Snow
+## Local owner steps (no publish required)
 
-| Scenario | Expected result | Result / notes |
+1. Check out the candidate revision identified in game.json/completion-report.md. Run `python scripts/check.py` locally if desired.
+2. Open `work/builds/game-001.rbxlx` in Studio after the check builds it. Alternatively use the repository-pinned Rojo with `games/game-001/default.project.json` and a blank local test place. Do not use a live place.
+3. Start Play. The UI is created at join without an avatar or map. Tap the token, tap a cell, read the preview, press PLACE. A legal placement earns 10. Tokens use their full color/shape names in the next-token card and compact labels in cells.
+4. Complete a run or take two illegal in-board placements; verify outcome, final score and immediate RESTART. Repeat ten runs, recording whether the puzzle stays fun without rewards. Ask a new tester to make a placement unaided in about 20 seconds.
+5. Run the matrix below. Save console errors, screenshots, device/safe-area dimensions, exact revision and findings here. Do not change human approval metadata until Snow provides actual evidence.
+
+For a reproducible victory in a local test, the owner can inspect the session's generated seed/witness with the Studio server debugger (break inside Sessions:join), or temporarily inject Generator.fallback() in a local uncommitted test copy. Fallback path is cells 1 through 16. Never add a public hint/witness remote. Pure witness victories are already covered automatically.
+
+| Scenario | Expected | Result |
 | --- | --- | --- |
-| First mobile session | Core action and goal are clear without help | NOT RUN |
-| Touch controls and UI | Reachable controls, readable text, safe areas | NOT RUN |
-| Complete round and replay | Approved loop, correct winner, next round | NOT RUN |
-| Multiplayer authority | Client cannot award scores/rewards or change round state | NOT RUN |
-| Join / leave / disconnect | Approved handling, no stuck round | NOT RUN |
-| Boost / ad / reward behavior | Matches approved spec; no purchase pressure | NOT RUN |
-| Fun and pacing | Snow records concrete observations | NOT RUN |
+| Small phone portrait and notched landscape; tablet; desktop mouse | Inside CoreUISafeInsets, readable labels, no overlap; board and primary targets >=48px; all rule cards accessible by scrolling. Test safe rectangles near 320x480 and 568x300. | NOT RUN |
+| Resize/rotate while selecting or dragging | Stable board, no accidental placement; preview updates to the actual target. | NOT RUN |
+| Tap token, cell, PLACE; optional drag | Correct legal/illegal explanation, server-confirmed state, one placement per intent. | NOT RUN |
+| Cancel touch, focus loss, outside drop, multi-touch | No unintended intent, score or strike. | NOT RUN |
+| Two illegal in-board attempts, duplicate first attempt | Two distinct attempts lose; duplicate does not strike twice; no rejected-input score. | NOT RUN |
+| Rules arrive after accepted 4/8/12 | Earlier board remains legal, new card explained; strikes do not advance stages. | NOT RUN |
+| Dead end, victory and restart | One terminal outcome; score <=160; new run ID and empty board; old intents ineffective. | NOT RUN |
+| Spam taps, delayed acknowledgement, timeout | Controls disabled in flight; timeout reads state, never resubmits placement; input recovers. | NOT RUN |
+| Studio two or more clients | Independent runs; no opponent traffic/state; one player's spam cannot affect another. | NOT RUN |
+| Respawn using local Studio tooling | Existing server run and score retained, ScreenGui persists/rehydrates; no duplicate UI. | NOT RUN |
+| Disconnect/rejoin | Old ephemeral session gone, fresh run. | NOT RUN |
+| New tester + ten runs | First placement around 20 seconds unaided; Snow judges sustained enjoyment. | NOT RUN |
 
-## Corrections from Snow
-
-PENDING — record each correction, its rule in the knowledge library, source-game link, and any resulting fix or backlog entry. Do not fabricate playtest evidence.
-
-## Decision
-
-PENDING — only Snow can approve PLAYTESTED. Record exact approval evidence and date in the game metadata and decision log. Record publishing approval separately.
+Test date, revision, device, network, player count and findings: pending actual owner test.
+Monetization expectation: none in approved v1. Publishing approval remains null.

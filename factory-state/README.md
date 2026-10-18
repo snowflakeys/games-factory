@@ -58,6 +58,6 @@ Place restrictions are checked at every stage, including SPEC-PENDING and BUILDI
 }
 ```
 
-Commit the tested implementation first, then record its actual revision in the completion checkpoint. These checks validate recorded evidence and run automated checks; they cannot establish human approval, fun, mobile usability, or retention. Snow's playtest, outcomes, and source metrics remain human decisions. Shared lock checks validate pin metadata; verify copied file contents when introducing a real shared dependency.
+Commit the tested implementation first, then record its actual revision in the completion checkpoint. These checks validate recorded evidence and run automated checks; they cannot establish human approval, fun, mobile usability, or retention. Snow's playtest, outcomes, and source metrics remain human decisions. Shared lock checks validate package hashes, exact copied file bytes, module maps and dependency pins; see [shared systems](../shared-systems/README.md) for the portable hash contract.
 
 Update checkpoint and state with each session. Commit the work after required checks pass. Git history identifies the saved checkpoint; do not try to put a commit's own hash in the same commit.

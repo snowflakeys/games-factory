@@ -1,0 +1,41 @@
+{
+    "schema_version": 1,
+    "systems": [
+        {
+            "name": "seeded-random",
+            "version": "1.0.0",
+            "source": "shared-systems/seeded-random/1.0.0",
+            "sha256": "efe7178c62a16f176aa18f461a286e9bcef9796aa848e6d9f7eb1da347dc1844",
+            "files": {
+                "SeededRandom.luau": "src/server/Systems/SeededRandom.luau"
+            }
+        },
+        {
+            "name": "token-bucket",
+            "version": "1.0.0",
+            "source": "shared-systems/token-bucket/1.0.0",
+            "sha256": "9e493f68c0c5fd7098aa3204659e3a1630f60344a6c06000288fd56e3f64be28",
+            "files": {
+                "TokenBucket.luau": "src/server/Systems/TokenBucket.luau"
+            }
+        },
+        {
+            "name": "public-history-bot",
+            "version": "1.0.0",
+            "source": "shared-systems/public-history-bot/1.0.0",
+            "sha256": "a6b8c6513e8b881a19e44210255dcb640c70db6706f4a222a98c851f8ca5d99f",
+            "files": {
+                "PublicHistoryBot.luau": "src/server/Systems/PublicHistoryBot.luau"
+            }
+        },
+        {
+            "name": "private-requests",
+            "version": "1.0.0",
+            "source": "shared-systems/private-requests/1.0.0",
+            "sha256": "442dbccd1f58df04cc09e6451f70f4a3b219c44cab2e0b91a28166e2c6b45cc5",
+            "files": {
+                "PrivateRequests.luau": "src/shared/Systems/PrivateRequests.luau"
+            }
+        }
+    ]
+}

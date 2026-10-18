@@ -1,0 +1,37 @@
+{
+    "schema_version": 1,
+    "id": "game-002",
+    "name": "Don't Match Me",
+    "idea_id": "idea-002",
+    "stage": "DEV-COMPLETE",
+    "completion": {
+        "at": "2026-10-16",
+        "revision": "310692363de43e8755131f3a0e62b5706cbe9bff",
+        "evidence": "Snow requested \"extract the systems\". Versioned shared-system maintenance of approved v1; python scripts/check.py PASS in cloud/headless Linux: 45 Python tests; package/copy hash and dependency checks; StyLua; Selene 0 errors/warnings/parse errors; 3,119 shared-system assertions; template 51; Rule Stack 95,514; Don't Match Me 444,769 with 10,080 seeded rounds, 480 replay rounds and 1,875 scoring configurations; all 3 Rojo builds. Pre-extraction comparison: 1,000 complete puzzles and 6,000 bot choices identical. GitHub source tree b8f28f0a992e9766022a7103976d8091685bb421 matches the tested local tree. See shared-systems/extraction-report.md and this game's completion report. Studio/device/fun and hosted CI not claimed.",
+        "core_loop": "Full approved v1: 1-16 humans with bots filling four seats, secret choices and fixed server reveal, UNIQUE/PAIRS/MINORITY scoring through eight rounds, authoritative totals/shared winners, joins/reconnects and fast/automatic rematch. Native touch UI, pure rules/bots/match/protocol/controller tests, no monetization.",
+        "checks": {
+            "formatter": "PASS",
+            "lint": "PASS",
+            "logic": "PASS",
+            "build": "PASS"
+        }
+    },
+    "approvals": {
+        "spec": {
+            "by": "Snow",
+            "at": "2026-10-16",
+            "revision": "9749d9f5d13aa03832a39d2bd67f3fc499a30942",
+            "path": "games/game-002/spec.md",
+            "sha256": "f16bfa5b8594d3d4b29265a9e761a29e6617060654d6ac6f7c18027814f95136",
+            "no_monetization_v1": true,
+            "evidence": "Snow, 2026-10-16, this conversation: 'approve and move to the next game', responding directly to the request to approve game-002/spec.md at 9749d9f5d13aa03832a39d2bd67f3fc499a30942 including the no-monetization v1 exception. Approval applies to Don't Match Me v1. Game-003 is not approved; the two-game playtest cap still applies."
+        },
+        "playtest": null,
+        "publish": null
+    },
+    "places": {
+        "test": null,
+        "live": null
+    },
+    "dead_reason": null
+}

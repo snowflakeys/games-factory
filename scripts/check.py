@@ -8,6 +8,7 @@ from pathlib import Path
 
 from bootstrap import ensure_tools
 from factory import ROOT, validate
+from shared_systems import catalog
 
 
 def run(arguments, cwd=ROOT):
@@ -24,7 +25,7 @@ def main():
         for folder in (ROOT / "scripts", ROOT / "tests"):
             for path in folder.rglob("*.py"):
                 ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
-        for folder in ("factory-state", "game-templates", "games"):
+        for folder in ("factory-state", "game-templates", "games", "shared-systems"):
             for path in (ROOT / folder).rglob("*.json"):
                 json.loads(path.read_text(encoding="utf-8"))
         run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"])
@@ -32,6 +33,8 @@ def main():
         source_folders = [ROOT / "game-templates", ROOT / "games", ROOT / "shared-systems"]
         run([tools["stylua"], "--check", "--config-path", ROOT / ".stylua.toml", *source_folders])
         run([tools["selene"], *source_folders])
+        for folder in catalog():
+            run([tools["lune"], "run", "tests/run.luau"], cwd=folder)
         state, _, _ = validate()
         projects = [("template-basic-round", ROOT / "game-templates/basic-round")]
         projects.extend((game_id, ROOT / "games" / game_id) for game_id in state["games"])

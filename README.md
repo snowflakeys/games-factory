@@ -1,6 +1,6 @@
 # Game Factory
 
-Snow owns and playtests a factory for simple Roblox games with one core loop. [AGENTS.md](AGENTS.md) is the canonical policy. This repository is initialized with no active game, no queued ideas, and no recorded game approvals.
+Snow owns and playtests a factory for simple Roblox games with one core loop. [AGENTS.md](AGENTS.md) is the canonical policy. Rule Stack and Don't Match Me have approved v1 specs and are DEV-COMPLETE, awaiting Snow's playtests (2/2 slots). No game is active and no unassigned idea is queued. See [the current checkpoint](factory-state/checkpoint.md) before starting work.
 
 ## Start here
 
@@ -46,7 +46,7 @@ The hosted source repository is [snowflakeys/games-factory](https://github.com/s
 | --- | --- |
 | `agent-instructions/` | Session checklist, definition of done, draft art-style bible |
 | `game-templates/basic-round/` | Rojo source, tested round-state helper, and game document templates |
-| `shared-systems/` | Versioned systems; Universal Blocks Engine reservation |
+| `shared-systems/` | Four versioned pure Luau systems; Universal Blocks Engine reservation |
 | `knowledge-base/` | Imported research, platform references, and evidence-tagged lesson template |
 | `factory-state/` | Registry, Snow's idea queue, and current checkpoint |
 | `games/game-NNN/` | Each game's own source, spec, assets, tests, reports, and approvals |
@@ -55,15 +55,15 @@ The hosted source repository is [snowflakeys/games-factory](https://github.com/s
 | `work/` | Ignored temporary downloads, test fixtures, and local builds |
 | `outputs/` | Ignored shareable source snapshot and setup report |
 
-Each game receives its own `game.json`, Rojo project, spec, decisions, backlog, asset prompts, marketing plan, completion report, playtest record, release checklist, metrics sheet, assets/tests directories, and shared-system lock. Templates show PENDING until real work and evidence replace them. No game or Universal Blocks Engine has been implemented by this setup.
+Each game receives its own `game.json`, Rojo project, spec, decisions, backlog, asset prompts, marketing plan, completion report, playtest record, release checklist, metrics sheet, assets/tests directories, and shared-system lock. Templates show PENDING until real work and evidence replace them. Rule Stack and Don't Match Me are now DEV-COMPLETE, awaiting Snow's playtest. Four reusable packages are available in [shared-systems](shared-systems/README.md); a complete Universal Blocks Engine is still reserved.
 
-## Decisions still needed from Snow
+## Next steps for Snow
 
-- First game idea and spec approval.
+- Playtest either completed game using its `playtest.md`, then record findings and PLAYTESTED evidence before starting game-003. Existing spec approvals are in each `game.json`; do not request them again.
 - Art preferences; the starter style bible is a draft.
 - Test/live place IDs, pass IDs, and ad eligibility when a game's spec needs them.
 
-The default monetization plan is a permanent 2x boost gamepass, an optional ad for 15 minutes of XP boost, and rewards, without purchase pressure. Define the benefit in each spec; record unconfigured integrations honestly. Never grant rewards from unverified client claims.
+The default monetization plan is a permanent 2x boost gamepass, an optional ad for 15 minutes of XP boost, and rewards, without purchase pressure. Both current v1 specs have Snow's recorded no-monetization exception. For future approved scopes, define the benefit in each spec and record unconfigured integrations honestly. Never grant rewards from unverified client claims.
 
 At session end, update the checkpoint and state, run the checks, and commit. Read [the session checklist](agent-instructions/session-checklist.md) and [definition of done](agent-instructions/definition-of-done.md) for the full cycle. Tool pins and maintenance instructions are in [tools/README.md](tools/README.md).
 
